@@ -115,8 +115,8 @@ public class MandelbrotTuringMachine {
     }
 
     private ComplexNumber getComplexNumberFromLatticeCoords(Point turingPosition) {
-        float realX = -3.0f + (4.0f*turingPosition.getX())/worldDimensions.getX();
-        float imgY = -2.0f + (4.0f*turingPosition.getY())/worldDimensions.getY();
+        float realX = -2.2f + (3.2f*turingPosition.getX())/worldDimensions.getX();
+        float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
         return new ComplexNumber(realX,imgY);
     }
 
