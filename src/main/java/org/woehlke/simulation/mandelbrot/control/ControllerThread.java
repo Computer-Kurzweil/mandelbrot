@@ -16,7 +16,7 @@ public class ControllerThread extends Thread
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private ComplexNumberPlaneCanvas canvas;
 
-    private int THREAD_SLEEP_TIME = 20;
+    private int THREAD_SLEEP_TIME = 1;
     private Boolean goOn;
 
     public ControllerThread(
