@@ -1,5 +1,7 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import java.util.Stack;
+
 /**
  * (C) 2006 - 2015 Thomas Woehlke.
  * http://thomas-woehlke.de/p/mandelbrot/
@@ -10,6 +12,8 @@ package org.woehlke.simulation.mandelbrot.model;
 public class MandelbrotTuringMachine {
 
     public final static int MAX_ITERATIONS = 16;
+    public final static int YET_UNCOMPUTED = -1;
+
     private Point turingPosition,worldDimensions,firstSetPosition;
 
     private int[][] lattice;
@@ -22,7 +26,7 @@ public class MandelbrotTuringMachine {
         lattice = new int[worldDimensions.getX()][worldDimensions.getY()];
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
-                lattice[x][y] = -1;
+                lattice[x][y] = YET_UNCOMPUTED;
             }
         }
         turingPosition = new Point(worldDimensions.getX()-1,worldDimensions.getY()/2+11);
@@ -32,6 +36,9 @@ public class MandelbrotTuringMachine {
         switch(turingPhase){
             case GO_TO_SET: stepGoToSet(); break;
             case WALK_AROUND: stepWalkAround(); break;
+            case FILL_THE_INSIDE: fillTheInside(); break;
+            case COLOR_THE_OUTSIDE: break;
+            case ALL_DONE: break;
             default: break;
         }
     }
@@ -122,6 +129,25 @@ public class MandelbrotTuringMachine {
 
     public int getCellStatusFor(int x,int y){
         return lattice[x][y]<0?0:lattice[x][y];
+    }
+
+    private void fillTheInside(){
+        Point start = new Point(firstSetPosition);
+        start.setX(start.getX() - 10);
+        Stack<Point> pointStack = new Stack<Point>();
+        pointStack.push(start);
+        while(!pointStack.empty()){
+            Point p = pointStack.pop();
+            if(lattice[p.getX()][p.getY()]==YET_UNCOMPUTED){
+                lattice[p.getX()][p.getY()]=0;
+                pointStack.push(new Point(p.getX()-1,p.getY()));
+                pointStack.push(new Point(p.getX()+1,p.getY()));
+                pointStack.push(new Point(p.getX(),p.getY()-1));
+                pointStack.push(new Point(p.getX(),p.getY()+1));
+            }
+        }
+        System.out.println("*****");
+        turingPhase=Phase.COLOR_THE_OUTSIDE;
     }
 
 }
