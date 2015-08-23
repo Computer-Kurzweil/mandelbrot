@@ -185,7 +185,7 @@ public class MandelbrotTuringMachine {
 
     public void click(int xClick, int yClick) {
         if(status==Status.MANDELBROT){
-            ComplexNumber c = getComplexNumberFromLatticeCoordsForJulia(new Point(xClick, yClick));
+            ComplexNumber c = getComplexNumberFromLatticeCoordsForMandelbrot(new Point(xClick, yClick));
             for(int y=0;y<worldDimensions.getY();y++) {
                 for (int x = 0; x < worldDimensions.getX(); x++) {
                     ComplexNumber z = getComplexNumberFromLatticeCoordsForJulia(new Point(x, y));
