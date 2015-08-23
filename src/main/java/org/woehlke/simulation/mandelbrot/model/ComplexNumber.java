@@ -14,6 +14,14 @@ public class ComplexNumber {
     private float realZ=0.0f;
     private float imgZ=0.0f;
 
+    public float getReal() {
+        return real;
+    }
+
+    public float getImg() {
+        return img;
+    }
+
     public ComplexNumber(float real, float img) {
         this.img = img;
         this.real = real;
@@ -47,5 +55,21 @@ public class ComplexNumber {
                 ", realZ=" + realZ +
                 ", imgZ=" + imgZ +
                 '}';
+    }
+
+    public int computeJuliaIterations(int maxIterations, ComplexNumber c) {
+        int i = 0;
+        realZ=real;
+        imgZ=img;
+        float newRealZ;
+        float newImgZ;
+        do {
+            newRealZ=realZ*realZ-imgZ*imgZ + c.getReal();
+            newImgZ=2*realZ*imgZ + c.getImg();
+            realZ=newRealZ;
+            imgZ=newImgZ;
+            i++;
+        } while (i<maxIterations && isNotDivergent());
+        return i;
     }
 }

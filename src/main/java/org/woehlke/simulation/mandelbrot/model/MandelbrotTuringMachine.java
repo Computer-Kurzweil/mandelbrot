@@ -19,17 +19,25 @@ public class MandelbrotTuringMachine {
     private int[][] lattice;
     private Phase turingPhase = Phase.GO_TO_SET;
     private Direction direction = Direction.LEFT;
+    private Status status = Status.MANDELBROT;
     private int steps = 0;
 
     public MandelbrotTuringMachine(Point worldDimensions) {
         this.worldDimensions = worldDimensions;
         lattice = new int[worldDimensions.getX()][worldDimensions.getY()];
+        init();
+    }
+
+    private void init(){
+        direction = Direction.LEFT;
+        turingPhase = Phase.GO_TO_SET;
+        steps = 0;
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 lattice[x][y] = YET_UNCOMPUTED;
             }
         }
-        turingPosition = new Point(worldDimensions.getX()-1,worldDimensions.getY()/2+11);
+        turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
     }
 
     public void step(){
@@ -44,7 +52,7 @@ public class MandelbrotTuringMachine {
     }
 
     private void stepGoToSet(){
-        ComplexNumber position = getComplexNumberFromLatticeCoords(turingPosition);
+        ComplexNumber position = getComplexNumberFromLatticeCoordsForMandelbrot(turingPosition);
         int iterations = position.computeMandelbrotIterations(MAX_ITERATIONS);
         //System.out.println(iterations+","+position.toString());
         boolean isInMandelbrotSet = (iterations==MAX_ITERATIONS);
@@ -59,7 +67,7 @@ public class MandelbrotTuringMachine {
     }
 
     private void stepWalkAround(){
-        ComplexNumber position = getComplexNumberFromLatticeCoords(turingPosition);
+        ComplexNumber position = getComplexNumberFromLatticeCoordsForMandelbrot(turingPosition);
         int iterations = position.computeMandelbrotIterations(MAX_ITERATIONS);
         boolean isInMandelbrotSet = iterations==MAX_ITERATIONS;
         //System.out.println(iterations+","+position.toString()+","+steps);
@@ -74,7 +82,7 @@ public class MandelbrotTuringMachine {
         steps++;
         if(turingPosition.equals(firstSetPosition) && (steps>100)){
             turingPhase = Phase.FILL_THE_INSIDE;
-            System.out.println("####");
+            //System.out.println("####");
         }
     }
 
@@ -121,7 +129,7 @@ public class MandelbrotTuringMachine {
         direction=newDirection;
     }
 
-    private ComplexNumber getComplexNumberFromLatticeCoords(Point turingPosition) {
+    private ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {
         float realX = -2.2f + (3.2f*turingPosition.getX())/worldDimensions.getX();
         float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
         return new ComplexNumber(realX,imgY);
@@ -146,7 +154,7 @@ public class MandelbrotTuringMachine {
                 pointStack.push(new Point(p.getX(),p.getY()+1));
             }
         }
-        System.out.println("*****");
+        //System.out.println("*****");
         turingPhase=Phase.COLOR_THE_OUTSIDE;
     }
 
@@ -154,7 +162,7 @@ public class MandelbrotTuringMachine {
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 if(lattice[x][y] == YET_UNCOMPUTED){
-                    ComplexNumber position = getComplexNumberFromLatticeCoords(new Point(x,y));
+                    ComplexNumber position = getComplexNumberFromLatticeCoordsForMandelbrot(new Point(x, y));
                     int iterations = position.computeMandelbrotIterations(MAX_ITERATIONS);
                     boolean isInMandelbrotSet = iterations==MAX_ITERATIONS;
                     if(isInMandelbrotSet){
@@ -165,8 +173,31 @@ public class MandelbrotTuringMachine {
                 }
             }
         }
-        System.out.println("------");
+        //System.out.println("------");
         turingPhase=Phase.ALL_DONE;
+    }
+
+    private ComplexNumber getComplexNumberFromLatticeCoordsForJulia(Point turingPosition) {
+        float realX = -1.6f + (3.2f*turingPosition.getX())/worldDimensions.getX();
+        float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
+        return new ComplexNumber(realX,imgY);
+    }
+
+    public void click(int xClick, int yClick) {
+        if(status==Status.MANDELBROT){
+            ComplexNumber c = getComplexNumberFromLatticeCoordsForJulia(new Point(xClick, yClick));
+            for(int y=0;y<worldDimensions.getY();y++) {
+                for (int x = 0; x < worldDimensions.getX(); x++) {
+                    ComplexNumber z = getComplexNumberFromLatticeCoordsForJulia(new Point(x, y));
+                    int iterations = z.computeJuliaIterations(MAX_ITERATIONS-1,c);
+                    lattice[x][y]=iterations;
+                }
+            }
+            status = Status.JULIA_SET;
+        } else {
+            status = Status.MANDELBROT;
+            init();
+        }
     }
 
 }

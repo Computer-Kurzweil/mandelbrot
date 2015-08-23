@@ -3,6 +3,9 @@ package org.woehlke.simulation.mandelbrot.control;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 /**
  * (C) 2006 - 2015 Thomas Woehlke.
  * http://thomas-woehlke.de/p/mandelbrot/
@@ -11,7 +14,7 @@ import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
  * Time: 00:36:20
  */
 public class ControllerThread extends Thread
-        implements Runnable {
+        implements Runnable, MouseListener {
 
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private ComplexNumberPlaneCanvas canvas;
@@ -25,6 +28,7 @@ public class ControllerThread extends Thread
         goOn = Boolean.TRUE;
         this.canvas=canvas;
         this.mandelbrotTuringMachine = mandelbrotTuringMachine;
+        this.canvas.addMouseListener(this);
     }
 
     public void run() {
@@ -47,4 +51,31 @@ public class ControllerThread extends Thread
         }
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        synchronized (goOn) {
+            //System.out.println(e.getX() + "," + e.getY());
+            mandelbrotTuringMachine.click(e.getX(), e.getY());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
