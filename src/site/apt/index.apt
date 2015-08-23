@@ -14,14 +14,6 @@ Mandelbrot Set
 
     Source: {{{https://en.wikipedia.org/wiki/Mandelbrot_set}https://en.wikipedia.org/wiki/Mandelbrot_set}}
 
-* Screen
-
-[img/screen01.png] Figure Moving around the Mandelbrot Set
-
-[img/screen02.png] Figure Moving around the Mandelbrot Set
-
-[img/screen03.png] Figure Done
-
 * Run the Desktop Application
 
     git clone https://github.com/phasenraum2010/mandelbrot.git
@@ -29,4 +21,20 @@ Mandelbrot Set
     cd mandelbrot
 
     mvn clean install exec:java
+
+* Screen
+
+** Screen 1
+
+[img/screen01.png] Figure Moving around the Mandelbrot Set
+
+** Screen 2
+
+[img/screen02.png] Figure Moving around the Mandelbrot Set
+
+** Screen 3
+
+[img/screen03.png] Figure Done
+
+
 
