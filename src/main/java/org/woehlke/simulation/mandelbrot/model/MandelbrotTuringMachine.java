@@ -37,7 +37,7 @@ public class MandelbrotTuringMachine {
             case GO_TO_SET: stepGoToSet(); break;
             case WALK_AROUND: stepWalkAround(); break;
             case FILL_THE_INSIDE: fillTheInside(); break;
-            case COLOR_THE_OUTSIDE: break;
+            case COLOR_THE_OUTSIDE: colorTheOutside(); break;
             case ALL_DONE: break;
             default: break;
         }
@@ -148,6 +148,25 @@ public class MandelbrotTuringMachine {
         }
         System.out.println("*****");
         turingPhase=Phase.COLOR_THE_OUTSIDE;
+    }
+
+    private void colorTheOutside(){
+        for(int y=0;y<worldDimensions.getY();y++){
+            for(int x=0;x<worldDimensions.getX();x++){
+                if(lattice[x][y] == YET_UNCOMPUTED){
+                    ComplexNumber position = getComplexNumberFromLatticeCoords(new Point(x,y));
+                    int iterations = position.computeMandelbrotIterations(MAX_ITERATIONS);
+                    boolean isInMandelbrotSet = iterations==MAX_ITERATIONS;
+                    if(isInMandelbrotSet){
+                        lattice[x][y]=0;
+                    } else {
+                        lattice[x][y]=iterations;
+                    }
+                }
+            }
+        }
+        System.out.println("------");
+        turingPhase=Phase.ALL_DONE;
     }
 
 }
