@@ -19,6 +19,8 @@ public class ComplexNumberPlaneCanvas extends JComponent {
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private Point worldDimensions;
 
+    private static final int STATE_MULTILPLIER = 256/MandelbrotTuringMachine.MAX_ITERATIONS;
+
     public ComplexNumberPlaneCanvas(
             Point worldDimensions,
             MandelbrotTuringMachine mandelbrotTuringMachine) {
@@ -32,7 +34,7 @@ public class ComplexNumberPlaneCanvas extends JComponent {
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 int state = mandelbrotTuringMachine.getCellStatusFor(x,y);
-                 Color stateColor = new Color(0,0,state*16);
+                 Color stateColor = new Color(0,0,state*STATE_MULTILPLIER);
                  g.setColor(stateColor);
                  g.drawLine(x,y,x,y);
             }

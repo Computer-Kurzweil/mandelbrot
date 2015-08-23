@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class MandelbrotTuringMachine {
 
-    public final static int MAX_ITERATIONS = 16;
+    public final static int MAX_ITERATIONS = 32;
     public final static int YET_UNCOMPUTED = -1;
 
     private Point turingPosition,worldDimensions,firstSetPosition;
