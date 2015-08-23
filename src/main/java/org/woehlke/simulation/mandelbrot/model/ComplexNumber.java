@@ -59,8 +59,8 @@ public class ComplexNumber {
 
     public int computeJuliaIterations(int maxIterations, ComplexNumber c) {
         int i = 0;
-        realZ=real;
-        imgZ=img;
+        realZ = real;
+        imgZ = img;
         float newRealZ;
         float newImgZ;
         do {

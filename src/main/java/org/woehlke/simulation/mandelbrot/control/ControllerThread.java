@@ -19,7 +19,7 @@ public class ControllerThread extends Thread
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private ComplexNumberPlaneCanvas canvas;
 
-    private int THREAD_SLEEP_TIME = 1;
+    private volatile int THREAD_SLEEP_TIME = 1;
     private Boolean goOn;
 
     public ControllerThread(
@@ -54,6 +54,7 @@ public class ControllerThread extends Thread
     @Override
     public void mouseClicked(MouseEvent e) {
         synchronized (goOn) {
+            THREAD_SLEEP_TIME = 0;
             //System.out.println(e.getX() + "," + e.getY());
             mandelbrotTuringMachine.click(e.getX(), e.getY());
         }
