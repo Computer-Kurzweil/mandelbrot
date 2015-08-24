@@ -257,6 +257,10 @@
                 <version>2.6</version>
                 <configuration>
                     <archive>
+                        <manifestEntries>
+                            <Application-Name>Mandelbrot</Application-Name>
+                            <Permissions>Sandbox</Permissions>
+                        </manifestEntries>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>org.woehlke.simulation.mandelbrot.desktop.AppMainDesktop</mainClass>

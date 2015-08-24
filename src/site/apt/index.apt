@@ -1,6 +1,6 @@
 Mandelbrot Set
 
-    Fractals
+    Fractals: Computing the Mandelbrot Set with a Turing Machine
 
     The Applet: {{{http://www.thomas-woehlke.de/a/mandelbrot}http://www.thomas-woehlke.de/a/mandelbrot}}
 
@@ -45,6 +45,9 @@ Mandelbrot Set
 ** Julia Set 2
 
 [img/julia02.png] Figure Julia Set
+
+
+
 
 
 
