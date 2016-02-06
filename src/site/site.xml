@@ -12,7 +12,7 @@
     <bannerLeft>
         <name>Mandelbrot Set</name>
         <src>/img/phasenraum_logo.gif</src>
-        <href>http://www.woehlke.org/p/mandelbrot/</href>
+        <href>http://www.woehlke.org/</href>
     </bannerLeft>
     <body>
         <menu ref="parent"/>
