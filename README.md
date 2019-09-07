@@ -40,27 +40,21 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 ![Clicked on another Point on the Edge of Mandelbrot Set: The Julia Set](etc/img/julia02.png)
 
 
-Git Repository
---------------
-* [https://bitbucket.org/ThomasWoehlke/mandelbrot](https://github.com/thomaswoehlke/mandelbrot.git)
+### Git Repository
+* [https://github.com/thomaswoehlke/mandelbrot](https://github.com/thomaswoehlke/mandelbrot.git)
 
 
-Maven Wrapper
--------------
-* [https://github.com/takari/maven-wrapper](https://github.com/takari/maven-wrapper) 
-* [https://www.baeldung.com/maven-wrapper](https://www.baeldung.com/maven-wrapper) 
+### Gradle Wrapper
+* [https://docs.gradle.org/current/userguide/gradle_wrapper.html](https://docs.gradle.org/current/userguide/gradle_wrapper.html) 
 
-Run the Desktop Application
----------------------------
-
+### Run the Desktop Application
 ```
 git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
 mvnw -Pdefault clean install exec:java
 ```
 
-Run the Applet Test
--------------------
+### Run the Applet Test
 ```
 git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
