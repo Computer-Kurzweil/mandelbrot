@@ -51,13 +51,13 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 ```
 git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
-mvnw -Pdefault clean install exec:java
+./gradlew run
 ```
 
 ### Run the Applet Test
 ```
 git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
-mvnw -Pdefault clean install exec:java
+TODO: xxx
 ```
 
