@@ -22,18 +22,23 @@ The Mandelbrot Set is drawn into the Complex Number Plane and so clicking into i
 The most beautiful Julia Sets are drawn by clicking into the Border of the Mandelbrot Set.
 
 ## More
-
-* https://en.wikipedia.org/wiki/Mandelbrot_set
-* https://en.wikipedia.org/wiki/Julia_set
-* https://en.wikipedia.org/wiki/Turing_machine
+* [https://en.wikipedia.org/wiki/Mandelbrot_set](https://en.wikipedia.org/wiki/Mandelbrot_set)
+* [https://en.wikipedia.org/wiki/Julia_set](https://en.wikipedia.org/wiki/Julia_set)
+* [https://en.wikipedia.org/wiki/Turing_machine](https://en.wikipedia.org/wiki/Turing_machine)
 
 ## Screenshots
+
+### Running around the Edge of the Mandelbrot Set
 
 ![Running around the Edge of the Mandelbrot Set](etc/img/screen01.png)
 
 ![Running around the Edge of the Mandelbrot Set](etc/img/screen02.png)
 
+### Computing the Area outside the Mandelbrot Set
+
 ![Computing the Area outside the Mandelbrot Set](etc/img/screen03.png)
+
+### Clicked somewhere on the Edge of Mandelbrot Set: The Julia Set
 
 ![Clicked somewhere on the Edge of Mandelbrot Set: The Julia Set](etc/img/julia01.png)
 
