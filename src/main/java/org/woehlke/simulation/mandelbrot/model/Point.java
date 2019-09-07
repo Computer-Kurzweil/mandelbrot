@@ -1,18 +1,26 @@
 package org.woehlke.simulation.mandelbrot.model;
 
-import java.io.Serializable;
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 
 /**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
  * (C) 2006 - 2015 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
+ *
  * Date: 04.02.2006
  * Time: 23:47:05
  */
-public class Point implements Serializable {
+public class Point implements MandelbrotSet {
+
+    static final long serialVersionUID = mySerialVersionUID;
 
     private int x = 0;
     private int y = 0;
+
+    public Point() {
+    }
 
     public Point(Point p) {
         this.x = p.getX();

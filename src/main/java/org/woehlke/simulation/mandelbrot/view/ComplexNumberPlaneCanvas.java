@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot.view;
 
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 import org.woehlke.simulation.mandelbrot.model.Point;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 
@@ -8,13 +9,18 @@ import java.awt.*;
 
 
 /**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
  * (C) 2006 - 2013 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
+ *
  * Date: 05.02.2006
  * Time: 00:51:51
  */
-public class ComplexNumberPlaneCanvas extends JComponent {
+public class ComplexNumberPlaneCanvas extends JComponent implements MandelbrotSet {
+
+    static final long serialVersionUID = mySerialVersionUID;
 
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private Point worldDimensions;

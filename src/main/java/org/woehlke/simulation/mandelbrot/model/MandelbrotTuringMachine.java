@@ -1,15 +1,25 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
+import org.woehlke.simulation.mandelbrot.conf.Direction;
+import org.woehlke.simulation.mandelbrot.conf.Phase;
+import org.woehlke.simulation.mandelbrot.conf.Status;
+
 import java.util.Stack;
 
 /**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
  * (C) 2006 - 2015 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
+ *
  * Date: 28.08.13
  * Time: 12:39
  */
-public class MandelbrotTuringMachine {
+public class MandelbrotTuringMachine implements MandelbrotSet {
+
+    static final long serialVersionUID = mySerialVersionUID;
 
     public final static int MAX_ITERATIONS = 32;
     public final static int YET_UNCOMPUTED = -1;

@@ -1,12 +1,19 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
+
 /**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
  * (C) 2006 - 2015 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
+ *
  * Created by tw on 18.08.15.
  */
-public class ComplexNumber {
+public class ComplexNumber implements MandelbrotSet {
+
+    static final long serialVersionUID = mySerialVersionUID;
 
     private float real;
     private float img;

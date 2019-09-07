@@ -1,4 +1,7 @@
-package org.woehlke.simulation.mandelbrot.view;
+package org.woehlke.simulation.mandelbrot.view.desktop;
+
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
+import org.woehlke.simulation.mandelbrot.view.applet.MandelbrotSetApplet;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -10,22 +13,24 @@ import java.io.Serializable;
 
 /**
  * (C) 2006 - 2013 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
  * Date: 04.02.2006
  * Time: 18:47:46
  */
-public class AppMainFrame extends JFrame implements ImageObserver,
+public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
-        WindowListener {
+        WindowListener, MandelbrotSet {
 
-    private MandelbrotApplet exe;
+    static final long serialVersionUID = mySerialVersionUID;
 
-    public AppMainFrame() {
+    private MandelbrotSetApplet exe;
+
+    public MandelbrotSetFrame() {
         super("Mandelbrot Set");
-        exe = new MandelbrotApplet();
+        exe = new MandelbrotSetApplet();
         exe.init();
         add("Center", exe);
         setBounds(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);

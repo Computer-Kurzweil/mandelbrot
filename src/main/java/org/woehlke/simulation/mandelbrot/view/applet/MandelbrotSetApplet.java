@@ -1,8 +1,10 @@
-package org.woehlke.simulation.mandelbrot.view;
+package org.woehlke.simulation.mandelbrot.view.applet;
 
+import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 import org.woehlke.simulation.mandelbrot.model.Point;
+import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -11,13 +13,19 @@ import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
 /**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
  * (C) 2006 - 2013 Thomas Woehlke.
- * http://thomas-woehlke.de/p/mandelbrot/
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
+ *
  * Date: 04.02.2006
  * Time: 18:33:14
  */
-public class MandelbrotApplet extends JApplet implements ImageObserver, MenuContainer, Serializable, Accessible {
+public class MandelbrotSetApplet extends JApplet implements
+    ImageObserver, MenuContainer, Serializable, Accessible, MandelbrotSet {
+
+    static final long serialVersionUID = mySerialVersionUID;
 
     private Label title = new Label("Mandelbrot Set drawn by a Turing Machine");
     private ControllerThread controllerThread;
