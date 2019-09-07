@@ -27,22 +27,20 @@ Blog Post
 Screenshot
 ----------
 
-![Later Screen](etc/img/phasenraum_logo.gif)
+![Running around the Edge of the Mandelbrot Set](etc/img/screen01.png)
 
-![Later Screen](etc/img/screen01.png)
+![Running around the Edge of the Mandelbrot Set](etc/img/screen02.png)
 
-![Later Screen](etc/img/screen02.png)
+![Computing the Area outside the Mandelbrot Set](etc/img/screen03.png)
 
-![Later Screen](etc/img/screen03.png)
+![Clicked somewhere on the Edge of Mandelbrot Set: The Julia Set](etc/img/julia01.png)
 
-![Early Screen](etc/img/julia01.png)
-
-![Later Screen](etc/img/julia01.png)
+![Clicked on another Point on the Edge of Mandelbrot Set: The Julia Set](etc/img/julia02.png)
 
 
 Git Repository
 --------------
-* [https://bitbucket.org/ThomasWoehlke/mandelbrot](https://bitbucket.org/ThomasWoehlke/mandelbrot.git)
+* [https://bitbucket.org/ThomasWoehlke/mandelbrot](https://github.com/thomaswoehlke/mandelbrot.git)
 
 
 Maven Wrapper
@@ -54,7 +52,7 @@ Run the Desktop Application
 ---------------------------
 
 ```
-git clone https://bitbucket.org/ThomasWoehlke/mandelbrot.git
+git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
 mvnw -Pdefault clean install exec:java
 ```
@@ -62,7 +60,7 @@ mvnw -Pdefault clean install exec:java
 Run the Applet Test
 -------------------
 ```
-git clone https://bitbucket.org/ThomasWoehlke/mandelbrot.git
+git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
 mvnw -Pdefault clean install exec:java
 ```
