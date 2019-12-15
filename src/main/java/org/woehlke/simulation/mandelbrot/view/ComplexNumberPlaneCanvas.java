@@ -21,23 +21,24 @@ public class ComplexNumberPlaneCanvas extends JComponent {
 
     private ApplicationModel app;
     private org.woehlke.simulation.mandelbrot.model.Point worldDimensions;
+    private Dimension preferredSize;
 
-    public ComplexNumberPlaneCanvas(
-            org.woehlke.simulation.mandelbrot.model.Point worldDimensions,
-            ApplicationModel app) {
-        this.worldDimensions = worldDimensions;
-        this.setSize(this.worldDimensions.getX(), this.worldDimensions.getY());
-        Dimension preferredSize = new Dimension(this.worldDimensions.getX(), this.worldDimensions.getY());
-        this.setPreferredSize(preferredSize);
+    public ComplexNumberPlaneCanvas(ApplicationModel app) {
         this.app = app;
+        this.worldDimensions = app.getWorldDimensions();
+        this.preferredSize = new Dimension(this.worldDimensions.getX(), this.worldDimensions.getY());
+        this.setPreferredSize(preferredSize);
     }
 
     public void paint(Graphics g) {
+        this.setPreferredSize(preferredSize);
         super.paintComponent(g);
-        for(int y=0;y<worldDimensions.getY();y++){
-            for(int x=0;x<worldDimensions.getX();x++){
-                int colorState = ((app.getCellStatusFor(x,y))*8)%256;
-                Color stateColor = new Color(0,0, colorState);
+        int red = 0;
+        int green = 0;
+        for(int y = 0; y < worldDimensions.getY(); y++){
+            for(int x = 0; x < worldDimensions.getX(); x++){
+                int blue = (((app.getCellStatusFor(x,y))*8)%256);
+                Color stateColor = new Color(red, green, blue);
                 g.setColor(stateColor);
                 g.drawLine(x,y,x,y);
             }
@@ -48,8 +49,7 @@ public class ComplexNumberPlaneCanvas extends JComponent {
         paint(g);
     }
 
-    public Point getWorldDimensions() {
-        return worldDimensions;
+    public ApplicationModel getApp() {
+        return app;
     }
-
 }

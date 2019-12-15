@@ -1,6 +1,7 @@
 package org.woehlke.simulation.mandelbrot.control;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
+import org.woehlke.simulation.mandelbrot.model.Point;
 import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
 
 import java.awt.event.MouseEvent;
@@ -19,19 +20,16 @@ import java.awt.event.MouseListener;
 public class ControllerThread extends Thread
         implements Runnable, MouseListener {
 
-    private ApplicationModel applicationModel;
-    private ComplexNumberPlaneCanvas canvas;
+    private volatile ApplicationModel applicationModel;
+    private volatile ComplexNumberPlaneCanvas canvas;
 
-    private volatile int THREAD_SLEEP_TIME = 10;
+    private final int THREAD_SLEEP_TIME = 1;
     private Boolean goOn;
 
-    public ControllerThread(
-            ComplexNumberPlaneCanvas canvas,
-            ApplicationModel applicationModel) {
+    public ControllerThread(ComplexNumberPlaneCanvas canvas) {
         goOn = Boolean.TRUE;
-        this.canvas=canvas;
-        this.applicationModel = applicationModel;
-        this.canvas.addMouseListener(this);
+        this.canvas = canvas;
+        this.applicationModel = canvas.getApp();
     }
 
     public void run() {
@@ -43,7 +41,7 @@ public class ControllerThread extends Thread
             this.applicationModel.step();
             canvas.repaint();
             try { sleep(THREAD_SLEEP_TIME); }
-            catch (InterruptedException e) { e.printStackTrace(); }
+            catch (InterruptedException e) { System.out.println(e.getMessage()); }
         }
         while (doIt);
     }
@@ -59,7 +57,8 @@ public class ControllerThread extends Thread
         synchronized (goOn) {
             //THREAD_SLEEP_TIME = 0;
             //System.out.println(e.getX() + "," + e.getY());
-            this.applicationModel.click(e.getX(), e.getY());
+            Point c = new Point(e.getX(), e.getY());
+            this.applicationModel.click(c);
         }
     }
 

@@ -1,5 +1,9 @@
 package org.woehlke.simulation.mandelbrot.view;
 
+import org.woehlke.simulation.mandelbrot.control.ControllerThread;
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
+import org.woehlke.simulation.mandelbrot.model.Point;
+
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
@@ -21,35 +25,57 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         Accessible,
         WindowListener {
 
-    private MandelbrotSetApplet exe;
+    private final static String title = "Mandelbrot Set";
+    private final static String subtitle = "Mandelbrot Set drawn by a Turing Machine";
+    private final ControllerThread controllerThread;
+    private final ComplexNumberPlaneCanvas canvas;
+    private final ApplicationModel applicationModel;
 
     public MandelbrotSetFrame() {
-        super("Mandelbrot Set");
-        exe = new MandelbrotSetApplet();
-        exe.init();
-        add("Center", exe);
-        setBounds( getMyBounds());
+        super(title);
+        BorderLayout layout = new BorderLayout();
+        int width = 640;
+        int height = 468;
+        JLabel subtitleLabel = new JLabel(subtitle);
+        Point worldDimensions = new Point(width,height);
+        this.applicationModel = new ApplicationModel(worldDimensions);
+        this.canvas = new ComplexNumberPlaneCanvas(applicationModel);
+        this.controllerThread = new ControllerThread(canvas);
+        this.setLayout(layout);
+        this.add(subtitleLabel, BorderLayout.NORTH);
+        this.add(canvas, BorderLayout.CENTER);
         pack();
         setVisible(true);
         toFront();
         addWindowListener(this);
+        this.canvas.addMouseListener(   this.controllerThread);
+        this.controllerThread.start();
     }
 
     public void windowOpened(WindowEvent e) {
-        setBounds(getMyBounds());
+        pack();
         setVisible(true);
         toFront();
     }
 
+    /*
     private Rectangle getMyBounds(){
-        return new Rectangle(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);
+        int startX = 100;
+        int startY = 100;
+        int width = applicationModel.getWorldDimensions().getX();
+        int height = applicationModel.getWorldDimensions().getY() + 30;
+        return new Rectangle(startX, startY, width, height);
     }
+    */
+
 
     public void windowClosing(WindowEvent e) {
+        this.controllerThread.exit();
         System.exit(0);
     }
 
     public void windowClosed(WindowEvent e) {
+        this.controllerThread.exit();
         System.exit(0);
     }
 
@@ -58,13 +84,14 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
     }
 
     public void windowDeiconified(WindowEvent e) {
-        setBounds(getMyBounds());
+        pack();
         setVisible(true);
         toFront();
     }
 
     public void windowActivated(WindowEvent e) {
-        setBounds(getMyBounds());
+        pack();
+        setVisible(true);
         toFront();
     }
 

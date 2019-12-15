@@ -1,6 +1,5 @@
 package org.woehlke.simulation.mandelbrot.model;
 
-import org.woehlke.simulation.mandelbrot.model.fractal.ComplexNumber;
 import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 import org.woehlke.simulation.mandelbrot.model.turing.MandelbrotTuringMachine;
 
@@ -20,12 +19,11 @@ public class ApplicationModel {
         mandelbrotTuringMachine = new MandelbrotTuringMachine(gaussianNumberPlane);
     }
 
-    public void click(int xClick, int yClick) {
+    public void click(Point c) {
         ApplicationStatus nextApplicationStatus = MANDELBROT;
         switch (applicationStatus){
             case MANDELBROT:
                 nextApplicationStatus = ApplicationStatus.JULIA_SET;
-                Point c = new Point(xClick, yClick);
                 gaussianNumberPlane.computeTheJuliaSetFor(c);
                 break;
             case JULIA_SET:
@@ -36,8 +34,6 @@ public class ApplicationModel {
         this.applicationStatus = nextApplicationStatus;
     }
 
-    private static final int STATE_MULTILPLIER = 256/ ComplexNumber.MAX_ITERATIONS;
-
     public int getCellStatusFor(int x, int y) {
         return gaussianNumberPlane.getCellStatusFor(x,y);
     }
@@ -46,5 +42,10 @@ public class ApplicationModel {
         if(applicationStatus == MANDELBROT){
             mandelbrotTuringMachine.step();
         }
+    }
+
+
+    public Point getWorldDimensions(){
+        return gaussianNumberPlane.getWorldDimensions();
     }
 }
