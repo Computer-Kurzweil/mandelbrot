@@ -1,4 +1,4 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.fractal;
 
 
 /**
@@ -51,8 +51,8 @@ public class ComplexNumber {
             realZ=newRealZ;
             imgZ=newImgZ;
             iterations++;
-        } while (iterations < MAX_ITERATIONS && isNotDivergent());
-        return (isNotDivergent() ? iterations : IS_INSIDE_FRACTAL_SET);
+        } while ((iterations < MAX_ITERATIONS) && isNotDivergent());
+        return iterations;
     }
 
     public int computeJuliaSet(ComplexNumber c) {

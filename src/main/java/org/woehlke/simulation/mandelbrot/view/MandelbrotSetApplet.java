@@ -34,7 +34,7 @@ public class MandelbrotSetApplet extends JApplet implements
         int height = 234 * scale;
         this.setLayout(new BorderLayout());
         this.add(title, BorderLayout.NORTH);
-        Point worldDimensions = new Point(width,height);
+        org.woehlke.simulation.mandelbrot.model.Point worldDimensions = new org.woehlke.simulation.mandelbrot.model.Point(width,height);
         applicationModel = new ApplicationModel(worldDimensions);
         canvas = new ComplexNumberPlaneCanvas(worldDimensions, applicationModel);
         this.add(canvas, BorderLayout.CENTER);

@@ -22,7 +22,7 @@ public class ControllerThread extends Thread
     private ApplicationModel applicationModel;
     private ComplexNumberPlaneCanvas canvas;
 
-    private volatile int THREAD_SLEEP_TIME = 1;
+    private volatile int THREAD_SLEEP_TIME = 10;
     private Boolean goOn;
 
     public ControllerThread(
@@ -57,7 +57,7 @@ public class ControllerThread extends Thread
     @Override
     public void mouseClicked(MouseEvent e) {
         synchronized (goOn) {
-            THREAD_SLEEP_TIME = 0;
+            //THREAD_SLEEP_TIME = 0;
             //System.out.println(e.getX() + "," + e.getY());
             this.applicationModel.click(e.getX(), e.getY());
         }

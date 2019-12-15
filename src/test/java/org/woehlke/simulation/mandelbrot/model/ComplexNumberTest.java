@@ -2,6 +2,7 @@ package org.woehlke.simulation.mandelbrot.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.woehlke.simulation.mandelbrot.model.fractal.ComplexNumber;
 
 /**
  * (C) 2006 - 2015 Thomas Woehlke.

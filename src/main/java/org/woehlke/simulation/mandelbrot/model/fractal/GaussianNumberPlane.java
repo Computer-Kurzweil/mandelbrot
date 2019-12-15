@@ -1,4 +1,6 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.fractal;
+
+import org.woehlke.simulation.mandelbrot.model.Point;
 
 import java.util.Stack;
 
@@ -13,14 +15,14 @@ public class GaussianNumberPlane {
     public GaussianNumberPlane(Point worldDimensions) {
         this.worldDimensions = worldDimensions;
         this.lattice = new int[worldDimensions.getX()][worldDimensions.getY()];
-        reset();
+        start();
     }
 
     public int getCellStatusFor(int x,int y){
         return lattice[x][y]<0?0:lattice[x][y];
     }
 
-    public void reset(){
+    public void start(){
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 lattice[x][y] = YET_UNCOMPUTED;
@@ -47,6 +49,7 @@ public class GaussianNumberPlane {
     }
 
     public void fillTheInside(Point firstSetPosition){
+        /*
         Point start = firstSetPosition.copy();
         start.move10Left();
         Stack<Point> pointStack = new Stack<Point>();
@@ -60,7 +63,7 @@ public class GaussianNumberPlane {
                 pointStack.push(new Point(p.getX(),p.getY()-1));
                 pointStack.push(new Point(p.getX(),p.getY()+1));
             }
-        }
+        }*/
     }
 
     public void fillTheOutsideWithColors(){

@@ -20,13 +20,15 @@ import java.awt.*;
 public class ComplexNumberPlaneCanvas extends JComponent {
 
     private ApplicationModel app;
-    private Point worldDimensions;
+    private org.woehlke.simulation.mandelbrot.model.Point worldDimensions;
 
     public ComplexNumberPlaneCanvas(
-            Point worldDimensions,
+            org.woehlke.simulation.mandelbrot.model.Point worldDimensions,
             ApplicationModel app) {
         this.worldDimensions = worldDimensions;
         this.setSize(this.worldDimensions.getX(), this.worldDimensions.getY());
+        Dimension preferredSize = new Dimension(this.worldDimensions.getX(), this.worldDimensions.getY());
+        this.setPreferredSize(preferredSize);
         this.app = app;
     }
 
@@ -34,8 +36,7 @@ public class ComplexNumberPlaneCanvas extends JComponent {
         super.paintComponent(g);
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
-                int colorState = app.getCellStatusFor(x,y);
-                System.out.println(colorState);
+                int colorState = ((app.getCellStatusFor(x,y))*8)%256;
                 Color stateColor = new Color(0,0, colorState);
                 g.setColor(stateColor);
                 g.drawLine(x,y,x,y);

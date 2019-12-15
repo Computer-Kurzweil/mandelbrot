@@ -1,7 +1,5 @@
 package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.view.MandelbrotSetApplet;
-
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +28,7 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         exe = new MandelbrotSetApplet();
         exe.init();
         add("Center", exe);
-        setBounds(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);
+        setBounds( getMyBounds());
         pack();
         setVisible(true);
         toFront();
@@ -38,9 +36,13 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
     }
 
     public void windowOpened(WindowEvent e) {
-        setBounds(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);
+        setBounds(getMyBounds());
         setVisible(true);
         toFront();
+    }
+
+    private Rectangle getMyBounds(){
+        return new Rectangle(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);
     }
 
     public void windowClosing(WindowEvent e) {
@@ -56,12 +58,13 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
     }
 
     public void windowDeiconified(WindowEvent e) {
-        setBounds(100, 100, exe.getCanvasDimensions().getX(), exe.getCanvasDimensions().getY() + 30);
+        setBounds(getMyBounds());
         setVisible(true);
         toFront();
     }
 
     public void windowActivated(WindowEvent e) {
+        setBounds(getMyBounds());
         toFront();
     }
 

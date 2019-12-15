@@ -1,4 +1,6 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.turing;
+
+import org.woehlke.simulation.mandelbrot.model.Point;
 
 public class TuringPositions {
 
@@ -11,8 +13,12 @@ public class TuringPositions {
     private int steps;
 
     public TuringPositions(Point worldDimensions) {
-        this.turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
         this.worldDimensions = worldDimensions;
+        start();
+    }
+
+    public void start() {
+        this.turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
         this.direction = Direction.LEFT;
     }
 
@@ -81,4 +87,5 @@ public class TuringPositions {
     public boolean isFinishedWalkAround() {
         return (turingPosition.equals(firstSetPosition)) && (steps>100);
     }
+
 }

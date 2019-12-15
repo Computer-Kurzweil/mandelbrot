@@ -1,4 +1,4 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.turing;
 
 public class TuringPhase {
 

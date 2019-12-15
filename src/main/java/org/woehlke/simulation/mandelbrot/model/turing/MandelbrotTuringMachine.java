@@ -1,4 +1,6 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.turing;
+
+import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -23,7 +25,9 @@ public class MandelbrotTuringMachine {
     }
 
     public void computeTheMandelbrotSet() {
-        turingPhase.start();
+        this.turingPhase.start();
+        this.gaussianNumberPlane.start();
+        this.turingPositions.start();
     }
 
     public void step() {
