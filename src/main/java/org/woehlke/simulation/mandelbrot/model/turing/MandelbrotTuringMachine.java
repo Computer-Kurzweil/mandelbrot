@@ -14,9 +14,9 @@ import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
  */
 public class MandelbrotTuringMachine {
 
-    private TuringPhase turingPhase;
-    private TuringPositions turingPositions;
-    private GaussianNumberPlane gaussianNumberPlane;
+    private final GaussianNumberPlane gaussianNumberPlane;
+    private final TuringPositions turingPositions;
+    private final TuringPhase turingPhase;
 
     public MandelbrotTuringMachine(GaussianNumberPlane gaussianNumberPlane) {
         this.gaussianNumberPlane = gaussianNumberPlane;

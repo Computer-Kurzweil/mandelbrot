@@ -29,6 +29,7 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
 
     private final static String title = "Mandelbrot Set";
     private final static String subtitle = "Mandelbrot Set drawn by a Turing Machine";
+
     private final ControllerThread controllerThread;
     private final ComplexNumberPlaneCanvas canvas;
     private final ApplicationModel applicationModel;
@@ -46,30 +47,23 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         this.setLayout(layout);
         this.add(subtitleLabel, BorderLayout.NORTH);
         this.add(canvas, BorderLayout.CENTER);
+        addWindowListener(this);
+        this.canvas.addMouseListener(   this);
         pack();
         setVisible(true);
         toFront();
-        addWindowListener(this);
-        this.canvas.addMouseListener(   this);
         this.controllerThread.start();
     }
 
-    public void windowOpened(WindowEvent e) {
+    private void showMe(){
         pack();
         setVisible(true);
         toFront();
     }
 
-    /*
-    private Rectangle getMyBounds(){
-        int startX = 100;
-        int startY = 100;
-        int width = applicationModel.getWorldDimensions().getX();
-        int height = applicationModel.getWorldDimensions().getY() + 30;
-        return new Rectangle(startX, startY, width, height);
+    public void windowOpened(WindowEvent e) {
+        showMe();
     }
-    */
-
 
     public void windowClosing(WindowEvent e) {
         this.controllerThread.exit();
@@ -81,49 +75,35 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         System.exit(0);
     }
 
-    public void windowIconified(WindowEvent e) {
-
-    }
+    public void windowIconified(WindowEvent e) {}
 
     public void windowDeiconified(WindowEvent e) {
-        pack();
-        setVisible(true);
-        toFront();
+        showMe();
     }
 
     public void windowActivated(WindowEvent e) {
-        pack();
-        setVisible(true);
-        toFront();
+        showMe();
     }
 
-    public void windowDeactivated(WindowEvent e) {
-    }
+    public void windowDeactivated(WindowEvent e) {}
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
         Point c = new Point(e.getX(), e.getY());
         this.applicationModel.click(c);
+        showMe();
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) {}
 }
