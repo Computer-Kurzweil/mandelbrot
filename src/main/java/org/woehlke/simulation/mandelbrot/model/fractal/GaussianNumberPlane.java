@@ -47,6 +47,7 @@ public class GaussianNumberPlane {
     }
 
     public void fillTheOutsideWithColors(){
+        System.out.println(";");
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 if(lattice[x][y] == YET_UNCOMPUTED){

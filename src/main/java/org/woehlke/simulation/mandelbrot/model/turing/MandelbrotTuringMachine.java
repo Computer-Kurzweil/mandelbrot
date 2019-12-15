@@ -31,6 +31,7 @@ public class MandelbrotTuringMachine {
     }
 
     public void step() {
+        System.out.println("+");
         switch(turingPhase.getTuringPhase()){
             case GO_TO_SET: stepGoToSet(); break;
             case WALK_AROUND: stepWalkAround(); break;
@@ -41,6 +42,7 @@ public class MandelbrotTuringMachine {
     }
 
     private void stepGoToSet(){
+        System.out.println(".");
         if(gaussianNumberPlane.isInMandelbrotSet(turingPositions.getTuringPosition())){
             turingPositions.markFirstSetPosition();
             turingPhase.finishGoToSet();
@@ -50,6 +52,7 @@ public class MandelbrotTuringMachine {
     }
 
     private void stepWalkAround(){
+        System.out.println(":");
         if(gaussianNumberPlane.isInMandelbrotSet(turingPositions.getTuringPosition())){
             this.turingPositions.turnRight();
         } else {
