@@ -14,11 +14,11 @@ import java.util.Objects;
  */
 public class ComplexNumber {
 
-    private volatile float real;
-    private volatile float img;
+    private volatile double real;
+    private volatile double img;
 
-    private volatile float realZ=0.0f;
-    private volatile float imgZ=0.0f;
+    private volatile double realZ=0.0f;
+    private volatile double imgZ=0.0f;
 
     private volatile int iterations;
 
@@ -26,15 +26,15 @@ public class ComplexNumber {
     public final static int MAX_ITERATIONS_JULIA = 31;
     private final static float DIVERGENCE_THRESHOLD = 4.0f;
 
-    public float getReal() {
+    public double getReal() {
         return real;
     }
 
-    public float getImg() {
+    public double getImg() {
         return img;
     }
 
-    public ComplexNumber(float real, float img) {
+    public ComplexNumber(double real, double img) {
         this.img = img;
         this.real = real;
         iterations=0;
@@ -44,8 +44,8 @@ public class ComplexNumber {
         iterations=0;
         realZ=0.0f;
         imgZ=0.0f;
-        float newRealZ;
-        float newImgZ;
+        double newRealZ;
+        double newImgZ;
         do {
             newRealZ=realZ*realZ-imgZ*imgZ + real;
             newImgZ=2*realZ*imgZ + img;
@@ -60,8 +60,8 @@ public class ComplexNumber {
         iterations=0;
         realZ = real;
         imgZ = img;
-        float newRealZ;
-        float newImgZ;
+        double newRealZ;
+        double newImgZ;
         do {
             newRealZ=realZ*realZ-imgZ*imgZ + c.getReal();
             newImgZ=2*realZ*imgZ + c.getImg();
@@ -83,18 +83,18 @@ public class ComplexNumber {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ComplexNumber)) return false;
         ComplexNumber that = (ComplexNumber) o;
-        return Float.compare(that.real, real) == 0 &&
-            Float.compare(that.img, img) == 0 &&
-            Float.compare(that.realZ, realZ) == 0 &&
-            Float.compare(that.imgZ, imgZ) == 0 &&
+        return Double.compare(that.getReal(), getReal()) == 0 &&
+            Double.compare(that.getImg(), getImg()) == 0 &&
+            Double.compare(that.realZ, realZ) == 0 &&
+            Double.compare(that.imgZ, imgZ) == 0 &&
             iterations == that.iterations;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(real, img, realZ, imgZ, iterations);
+        return Objects.hash(getReal(), getImg(), realZ, imgZ, iterations);
     }
 
     @Override
@@ -107,4 +107,6 @@ public class ComplexNumber {
             ", iterations=" + iterations +
             '}';
     }
+
+
 }

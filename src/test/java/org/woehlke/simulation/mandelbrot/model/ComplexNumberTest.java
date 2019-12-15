@@ -14,37 +14,33 @@ public class ComplexNumberTest {
 
     @Test
     public void computeMandelbrotIterationsTest1(){
-        ComplexNumber complexNumber1 = new ComplexNumber(0.0f,0.0f);
-        int maxIterations = 32;
-        int iterations = complexNumber1.computeMandelbrotIterations(maxIterations);
-        Assert.assertEquals(maxIterations, iterations);
+        ComplexNumber complexNumber1 = new ComplexNumber(0.0d,0.0d);
+        int iterations = complexNumber1.computeMandelbrotSet();
+        Assert.assertEquals(ComplexNumber.MAX_ITERATIONS, iterations);
     }
 
     @Test
     public void computeMandelbrotIterationsTest2(){
-        int maxIterations = 32;
-        ComplexNumber complexNumber2 = new ComplexNumber(1.0f,1.2f);
-        int iterations = complexNumber2.computeMandelbrotIterations(maxIterations);
-        Assert.assertNotEquals(maxIterations,iterations);
-        Assert.assertTrue(iterations < maxIterations);
+        ComplexNumber complexNumber2 = new ComplexNumber(1.0d,1.2d);
+        int iterations = complexNumber2.computeMandelbrotSet();
+        Assert.assertNotEquals(ComplexNumber.MAX_ITERATIONS,iterations);
+        Assert.assertTrue(iterations < ComplexNumber.MAX_ITERATIONS);
     }
 
     @Test
     public void computeJuliaIterationsTest1(){
-        ComplexNumber z = new ComplexNumber(0.1f,0.2f);
-        ComplexNumber c = new ComplexNumber(0.2f,0.1f);
-        int maxIterations = 32;
-        int iterations = z.computeJuliaIterations(maxIterations, c);
-        Assert.assertEquals(maxIterations, iterations);
+        ComplexNumber z = new ComplexNumber(0.1d,0.2d);
+        ComplexNumber c = new ComplexNumber(0.2d,0.1d);
+        int iterations = z.computeJuliaSet(c);
+        Assert.assertEquals(ComplexNumber.MAX_ITERATIONS, iterations);
     }
 
     @Test
     public void computeJuliaIterationsTest2(){
-        ComplexNumber z = new ComplexNumber(0.1f,0.2f);
-        ComplexNumber c = new ComplexNumber(1.0f,1.1f);
-        int maxIterations = 32;
-        int iterations = z.computeJuliaIterations(maxIterations,c);
-        Assert.assertNotEquals(maxIterations,iterations);
-        Assert.assertTrue(iterations < maxIterations);
+        ComplexNumber z = new ComplexNumber(0.1d,0.2d);
+        ComplexNumber c = new ComplexNumber(1.0d,1.1d);
+        int iterations = z.computeJuliaSet(c);
+        Assert.assertNotEquals(ComplexNumber.MAX_ITERATIONS,iterations);
+        Assert.assertTrue(iterations < ComplexNumber.MAX_ITERATIONS);
     }
 }

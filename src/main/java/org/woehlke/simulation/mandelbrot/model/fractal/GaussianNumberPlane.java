@@ -9,7 +9,6 @@ public class GaussianNumberPlane {
     private final Point worldDimensions;
     public final static int YET_UNCOMPUTED = -1;
 
-
     public GaussianNumberPlane(Point worldDimensions) {
         this.worldDimensions = worldDimensions;
         this.lattice = new int[worldDimensions.getX()][worldDimensions.getY()];
@@ -28,15 +27,15 @@ public class GaussianNumberPlane {
         return (lattice[x][y])<0?0:lattice[x][y];
     }
 
-    private ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {
-        float realX = -2.2f + (3.2f*turingPosition.getX())/worldDimensions.getX();
-        float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
+    private synchronized ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {
+        double realX = -2.2f + (3.2f*turingPosition.getX())/worldDimensions.getX();
+        double imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
         return new ComplexNumber(realX,imgY);
     }
 
-    private ComplexNumber getComplexNumberFromLatticeCoordsForJulia(Point turingPosition) {
-        float realX = -1.6f + (3.2f*turingPosition.getX())/worldDimensions.getX();
-        float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
+    private synchronized ComplexNumber getComplexNumberFromLatticeCoordsForJulia(Point turingPosition) {
+        double realX = -1.6f + (3.2f*turingPosition.getX())/worldDimensions.getX();
+        double imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
         return new ComplexNumber(realX,imgY);
     }
 
@@ -51,7 +50,7 @@ public class GaussianNumberPlane {
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 if(lattice[x][y] == YET_UNCOMPUTED){
-                    isInMandelbrotSet(new Point(x, y));
+                    this.isInMandelbrotSet(new Point(x, y));
                 }
             }
         }
@@ -63,13 +62,13 @@ public class GaussianNumberPlane {
         for(int y = 0; y < worldDimensions.getY(); y++) {
             for (int x = 0; x < worldDimensions.getX(); x++) {
                 Point zPoint = new Point(x, y);
-                ComplexNumber z = getComplexNumberFromLatticeCoordsForJulia(zPoint);
+                ComplexNumber z = this.getComplexNumberFromLatticeCoordsForJulia(zPoint);
                 lattice[x][y] = z.computeJuliaSet(c);
             }
         }
     }
 
-    public Point getWorldDimensions() {
+    public synchronized Point getWorldDimensions() {
         return worldDimensions;
     }
 }
