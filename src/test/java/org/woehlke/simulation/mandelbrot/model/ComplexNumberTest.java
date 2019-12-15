@@ -32,7 +32,7 @@ public class ComplexNumberTest {
         ComplexNumber z = new ComplexNumber(0.1d,0.2d);
         ComplexNumber c = new ComplexNumber(0.2d,0.1d);
         int iterations = z.computeJuliaSet(c);
-        Assert.assertEquals(ComplexNumber.MAX_ITERATIONS, iterations);
+        Assert.assertEquals(ComplexNumber.MAX_ITERATIONS_JULIA, iterations);
     }
 
     @Test
