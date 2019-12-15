@@ -34,7 +34,6 @@ public class MandelbrotTuringMachine {
         switch(turingPhase.getTuringPhase()){
             case GO_TO_SET: stepGoToSet(); break;
             case WALK_AROUND: stepWalkAround(); break;
-            case FILL_THE_INSIDE: fillTheInside(); break;
             case COLOR_THE_OUTSIDE: fillTheOutsideWithColors(); break;
             case ALL_DONE: break;
             default: break;
@@ -60,11 +59,6 @@ public class MandelbrotTuringMachine {
         if(turingPositions.isFinishedWalkAround()){
             turingPhase.finishWalkAround();
         }
-    }
-
-    private void fillTheInside(){
-        gaussianNumberPlane.fillTheInside(turingPositions.getFirstSetPosition());
-        turingPhase.finishFillTheInside();
     }
 
     private void fillTheOutsideWithColors(){

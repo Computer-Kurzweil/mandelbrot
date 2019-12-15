@@ -7,6 +7,8 @@ import org.woehlke.simulation.mandelbrot.model.Point;
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
@@ -23,7 +25,7 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
-        WindowListener {
+        WindowListener, MouseListener {
 
     private final static String title = "Mandelbrot Set";
     private final static String subtitle = "Mandelbrot Set drawn by a Turing Machine";
@@ -48,7 +50,7 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         setVisible(true);
         toFront();
         addWindowListener(this);
-        this.canvas.addMouseListener(   this.controllerThread);
+        this.canvas.addMouseListener(   this);
         this.controllerThread.start();
     }
 
@@ -96,5 +98,32 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
     }
 
     public void windowDeactivated(WindowEvent e) {
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        Point c = new Point(e.getX(), e.getY());
+        this.applicationModel.click(c);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

@@ -17,8 +17,7 @@ import java.awt.event.MouseListener;
  * Date: 05.02.2006
  * Time: 00:36:20
  */
-public class ControllerThread extends Thread
-        implements Runnable, MouseListener {
+public class ControllerThread extends Thread implements Runnable {
 
     private volatile ApplicationModel applicationModel;
     private volatile ComplexNumberPlaneCanvas canvas;
@@ -52,33 +51,4 @@ public class ControllerThread extends Thread
         }
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        synchronized (goOn) {
-            //THREAD_SLEEP_TIME = 0;
-            //System.out.println(e.getX() + "," + e.getY());
-            Point c = new Point(e.getX(), e.getY());
-            this.applicationModel.click(c);
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }

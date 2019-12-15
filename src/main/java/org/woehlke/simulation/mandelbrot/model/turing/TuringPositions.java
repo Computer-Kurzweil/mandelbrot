@@ -18,6 +18,7 @@ public class TuringPositions {
     }
 
     public void start() {
+        steps = 0;
         this.turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
         this.direction = Direction.LEFT;
     }

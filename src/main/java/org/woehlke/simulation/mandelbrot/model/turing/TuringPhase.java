@@ -21,17 +21,12 @@ public class TuringPhase {
     }
 
     public void finishWalkAround() {
-        turingPhase = Phase.FILL_THE_INSIDE;
-        //System.out.println("####");
-    }
-
-    public void finishFillTheInside(){
         turingPhase=Phase.COLOR_THE_OUTSIDE;
-        //System.out.println("*****");
+        System.out.println("####");
     }
 
     public void finishFillTheOutsideWithColors() {
         turingPhase=Phase.ALL_DONE;
-        //System.out.println("------");
+        System.out.println("------");
     }
 }
