@@ -5,7 +5,7 @@ public class TuringPhase {
     private volatile Phase turingPhase;
 
     public TuringPhase() {
-        this.turingPhase = Phase.GO_TO_SET;
+        start();
     }
 
     public void start(){
@@ -13,20 +13,21 @@ public class TuringPhase {
     }
 
     public void finishGoToSet(){
+        System.out.println("===");
         turingPhase=Phase.WALK_AROUND;
-    }
-
-    public Phase getTuringPhase() {
-        return turingPhase;
     }
 
     public void finishWalkAround() {
         turingPhase=Phase.COLOR_THE_OUTSIDE;
-        System.out.println("####");
+        System.out.println("###");
     }
 
     public void finishFillTheOutsideWithColors() {
         turingPhase=Phase.ALL_DONE;
-        System.out.println("------");
+        System.out.println("---");
+    }
+
+    public Phase getTuringPhase() {
+        return turingPhase;
     }
 }

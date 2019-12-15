@@ -22,6 +22,7 @@ public class MandelbrotTuringMachine {
         this.gaussianNumberPlane = gaussianNumberPlane;
         this.turingPhase = new TuringPhase();
         this.turingPositions = new TuringPositions(gaussianNumberPlane.getWorldDimensions());
+        computeTheMandelbrotSet();
     }
 
     public synchronized void computeTheMandelbrotSet() {
