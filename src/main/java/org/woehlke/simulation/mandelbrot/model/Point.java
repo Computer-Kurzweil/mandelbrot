@@ -62,4 +62,13 @@ public class Point {
         result = 31 * result + y;
         return result;
     }
+
+    public Point copy() {
+        return new Point(this);
+    }
+
+    public Point move10Left(){
+        this.x -= 10;
+        return this;
+    }
 }

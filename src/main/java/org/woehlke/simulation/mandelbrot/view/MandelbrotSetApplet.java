@@ -1,9 +1,8 @@
 package org.woehlke.simulation.mandelbrot.view;
 
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
-import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.Point;
-import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -27,7 +26,7 @@ public class MandelbrotSetApplet extends JApplet implements
     private Label title = new Label("Mandelbrot Set drawn by a Turing Machine");
     private ControllerThread controllerThread;
     private ComplexNumberPlaneCanvas canvas;
-    private MandelbrotTuringMachine mandelbrotTuringMachine;
+    private ApplicationModel applicationModel;
 
     public void init() {
         int scale = 2;
@@ -36,10 +35,10 @@ public class MandelbrotSetApplet extends JApplet implements
         this.setLayout(new BorderLayout());
         this.add(title, BorderLayout.NORTH);
         Point worldDimensions = new Point(width,height);
-        mandelbrotTuringMachine = new MandelbrotTuringMachine(worldDimensions);
-        canvas = new ComplexNumberPlaneCanvas(worldDimensions, mandelbrotTuringMachine);
+        applicationModel = new ApplicationModel(worldDimensions);
+        canvas = new ComplexNumberPlaneCanvas(worldDimensions, applicationModel);
         this.add(canvas, BorderLayout.CENTER);
-        controllerThread = new ControllerThread(canvas, mandelbrotTuringMachine);
+        controllerThread = new ControllerThread(canvas, applicationModel);
         controllerThread.start();
     }
 

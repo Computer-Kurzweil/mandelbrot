@@ -18,6 +18,13 @@ public class ComplexNumber {
     private float realZ=0.0f;
     private float imgZ=0.0f;
 
+    private int iterations;
+
+    public final static int MAX_ITERATIONS = 32;
+    public final static int MAX_ITERATIONS_JULIA = 31;
+    public final static int IS_INSIDE_FRACTAL_SET = 0;
+    private final static float DIVERGENCE_THRESHOLD = 4.0f;
+
     public float getReal() {
         return real;
     }
@@ -29,10 +36,11 @@ public class ComplexNumber {
     public ComplexNumber(float real, float img) {
         this.img = img;
         this.real = real;
+        iterations=0;
     }
 
-    public int computeMandelbrotIterations(final int maxIterations) {
-        int i = 0;
+    public int computeMandelbrotSet() {
+        iterations=0;
         realZ=0.0f;
         imgZ=0.0f;
         float newRealZ;
@@ -42,13 +50,33 @@ public class ComplexNumber {
             newImgZ=2*realZ*imgZ + img;
             realZ=newRealZ;
             imgZ=newImgZ;
-            i++;
-        } while (i<maxIterations && isNotDivergent());
-        return i;
+            iterations++;
+        } while (iterations < MAX_ITERATIONS && isNotDivergent());
+        return (isNotDivergent() ? iterations : IS_INSIDE_FRACTAL_SET);
     }
 
-    private boolean isNotDivergent(){
-        return (( realZ*realZ + imgZ*imgZ ) < 4.0f);
+    public int computeJuliaSet(ComplexNumber c) {
+        iterations=0;
+        realZ = real;
+        imgZ = img;
+        float newRealZ;
+        float newImgZ;
+        do {
+            newRealZ=realZ*realZ-imgZ*imgZ + c.getReal();
+            newImgZ=2*realZ*imgZ + c.getImg();
+            realZ=newRealZ;
+            imgZ=newImgZ;
+            iterations++;
+        } while (iterations < MAX_ITERATIONS_JULIA && isNotDivergent());
+        return iterations;
+    }
+
+    public boolean isInMandelbrotSet() {
+        return (iterations == MAX_ITERATIONS);
+    }
+
+    public boolean isNotDivergent(){
+        return (( realZ*realZ + imgZ*imgZ ) < DIVERGENCE_THRESHOLD);
     }
 
     @Override
@@ -61,19 +89,6 @@ public class ComplexNumber {
                 '}';
     }
 
-    public int computeJuliaIterations(int maxIterations, ComplexNumber c) {
-        int i = 0;
-        realZ = real;
-        imgZ = img;
-        float newRealZ;
-        float newImgZ;
-        do {
-            newRealZ=realZ*realZ-imgZ*imgZ + c.getReal();
-            newImgZ=2*realZ*imgZ + c.getImg();
-            realZ=newRealZ;
-            imgZ=newImgZ;
-            i++;
-        } while (i<maxIterations && isNotDivergent());
-        return i;
-    }
+
+
 }

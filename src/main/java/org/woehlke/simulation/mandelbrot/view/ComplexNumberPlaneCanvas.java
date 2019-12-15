@@ -1,7 +1,7 @@
 package org.woehlke.simulation.mandelbrot.view;
 
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.Point;
-import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,27 +19,26 @@ import java.awt.*;
  */
 public class ComplexNumberPlaneCanvas extends JComponent {
 
-    private MandelbrotTuringMachine mandelbrotTuringMachine;
+    private ApplicationModel app;
     private Point worldDimensions;
-
-    private static final int STATE_MULTILPLIER = 256/MandelbrotTuringMachine.MAX_ITERATIONS;
 
     public ComplexNumberPlaneCanvas(
             Point worldDimensions,
-            MandelbrotTuringMachine mandelbrotTuringMachine) {
+            ApplicationModel app) {
         this.worldDimensions = worldDimensions;
         this.setSize(this.worldDimensions.getX(), this.worldDimensions.getY());
-        this.mandelbrotTuringMachine = mandelbrotTuringMachine;
+        this.app = app;
     }
 
     public void paint(Graphics g) {
         super.paintComponent(g);
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
-                int state = mandelbrotTuringMachine.getCellStatusFor(x,y);
-                 Color stateColor = new Color(0,0,state*STATE_MULTILPLIER);
-                 g.setColor(stateColor);
-                 g.drawLine(x,y,x,y);
+                int colorState = app.getCellStatusFor(x,y);
+                System.out.println(colorState);
+                Color stateColor = new Color(0,0, colorState);
+                g.setColor(stateColor);
+                g.drawLine(x,y,x,y);
             }
         }
     }
