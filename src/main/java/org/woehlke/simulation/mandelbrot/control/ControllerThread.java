@@ -22,7 +22,7 @@ public class ControllerThread extends Thread implements Runnable {
     private volatile ApplicationModel applicationModel;
     private volatile ComplexNumberPlaneCanvas canvas;
 
-    private final int THREAD_SLEEP_TIME = 10;
+    private final int THREAD_SLEEP_TIME = 1;
     private Boolean goOn;
 
     public ControllerThread(ComplexNumberPlaneCanvas canvas) {

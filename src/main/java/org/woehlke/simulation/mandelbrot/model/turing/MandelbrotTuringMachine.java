@@ -25,35 +25,37 @@ public class MandelbrotTuringMachine {
         computeTheMandelbrotSet();
     }
 
-    public synchronized void computeTheMandelbrotSet() {
+    public void computeTheMandelbrotSet() {
+        System.out.println("*******");
         this.turingPhase.start();
         this.gaussianNumberPlane.start();
         this.turingPositions.start();
+        System.out.println("*******");
     }
 
     public synchronized void step() {
-        System.out.println("+");
         switch(turingPhase.getTuringPhase()){
             case GO_TO_SET: stepGoToSet(); break;
             case WALK_AROUND: stepWalkAround(); break;
             case COLOR_THE_OUTSIDE: fillTheOutsideWithColors(); break;
-            case ALL_DONE: break;
-            default: break;
+            case ALL_DONE:  System.out.print("||||"); break;
+            default:      System.out.print("////"); break;
         }
     }
 
     private void stepGoToSet(){
-        System.out.println(".");
+        System.out.print(".");
         if(gaussianNumberPlane.isInMandelbrotSet(turingPositions.getTuringPosition())){
             turingPositions.markFirstSetPosition();
             turingPhase.finishGoToSet();
         } else {
             this.turingPositions.goForward();
         }
+        System.out.print(".");
     }
 
     private void stepWalkAround(){
-        System.out.println(":");
+        System.out.print(":");
         if(gaussianNumberPlane.isInMandelbrotSet(turingPositions.getTuringPosition())){
             this.turingPositions.turnRight();
         } else {
@@ -63,10 +65,13 @@ public class MandelbrotTuringMachine {
         if(turingPositions.isFinishedWalkAround()){
             turingPhase.finishWalkAround();
         }
+        System.out.print(":");
     }
 
     private void fillTheOutsideWithColors(){
+        System.out.println("@");
         gaussianNumberPlane.fillTheOutsideWithColors();
         turingPhase.finishFillTheOutsideWithColors();
+        System.out.println("@");
     }
 }

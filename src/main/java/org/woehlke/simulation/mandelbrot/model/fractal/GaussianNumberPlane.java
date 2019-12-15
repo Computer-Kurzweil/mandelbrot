@@ -47,7 +47,7 @@ public class GaussianNumberPlane {
     }
 
     public synchronized void fillTheOutsideWithColors(){
-        System.out.println(";");
+        System.out.print(";");
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 if(lattice[x][y] == YET_UNCOMPUTED){
@@ -55,6 +55,7 @@ public class GaussianNumberPlane {
                 }
             }
         }
+        System.out.print(";");
     }
 
     public synchronized void computeTheJuliaSetFor(Point point) {
