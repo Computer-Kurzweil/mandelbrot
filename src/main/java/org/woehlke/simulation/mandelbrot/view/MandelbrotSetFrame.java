@@ -1,7 +1,6 @@
-package org.woehlke.simulation.mandelbrot.view.desktop;
+package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
-import org.woehlke.simulation.mandelbrot.view.applet.MandelbrotSetApplet;
+import org.woehlke.simulation.mandelbrot.view.MandelbrotSetApplet;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -22,9 +21,7 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
-        WindowListener, MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+        WindowListener {
 
     private MandelbrotSetApplet exe;
 

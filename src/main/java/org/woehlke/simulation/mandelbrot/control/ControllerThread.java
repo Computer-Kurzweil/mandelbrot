@@ -1,6 +1,5 @@
 package org.woehlke.simulation.mandelbrot.control;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 import org.woehlke.simulation.mandelbrot.view.ComplexNumberPlaneCanvas;
 
@@ -18,9 +17,7 @@ import java.awt.event.MouseListener;
  * Time: 00:36:20
  */
 public class ControllerThread extends Thread
-        implements Runnable, MouseListener, MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+        implements Runnable, MouseListener {
 
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private ComplexNumberPlaneCanvas canvas;

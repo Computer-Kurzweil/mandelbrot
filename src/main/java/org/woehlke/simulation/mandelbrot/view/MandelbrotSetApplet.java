@@ -1,6 +1,5 @@
-package org.woehlke.simulation.mandelbrot.view.applet;
+package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 import org.woehlke.simulation.mandelbrot.model.Point;
@@ -23,9 +22,7 @@ import java.io.Serializable;
  * Time: 18:33:14
  */
 public class MandelbrotSetApplet extends JApplet implements
-    ImageObserver, MenuContainer, Serializable, Accessible, MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+    ImageObserver, MenuContainer, Serializable, Accessible {
 
     private Label title = new Label("Mandelbrot Set drawn by a Turing Machine");
     private ControllerThread controllerThread;

@@ -1,6 +1,6 @@
 package org.woehlke.simulation.mandelbrot;
 
-import org.woehlke.simulation.mandelbrot.view.desktop.MandelbrotSetFrame;
+import org.woehlke.simulation.mandelbrot.view.MandelbrotSetFrame;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.

@@ -1,7 +1,5 @@
 package org.woehlke.simulation.mandelbrot.model;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
-
 /**
  * Mandelbrot Set drawn by a Turing Machine.
  *
@@ -12,9 +10,7 @@ import org.woehlke.simulation.mandelbrot.MandelbrotSet;
  * Date: 04.02.2006
  * Time: 23:47:05
  */
-public class Point implements MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+public class Point {
 
     private int x = 0;
     private int y = 0;

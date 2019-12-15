@@ -1,10 +1,5 @@
 package org.woehlke.simulation.mandelbrot.model;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
-import org.woehlke.simulation.mandelbrot.conf.Direction;
-import org.woehlke.simulation.mandelbrot.conf.Phase;
-import org.woehlke.simulation.mandelbrot.conf.Status;
-
 import java.util.Stack;
 
 /**
@@ -17,9 +12,7 @@ import java.util.Stack;
  * Date: 28.08.13
  * Time: 12:39
  */
-public class MandelbrotTuringMachine implements MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+public class MandelbrotTuringMachine {
 
     public final static int MAX_ITERATIONS = 32;
     public final static int YET_UNCOMPUTED = -1;

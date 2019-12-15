@@ -1,6 +1,5 @@
 package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.MandelbrotSet;
 import org.woehlke.simulation.mandelbrot.model.Point;
 import org.woehlke.simulation.mandelbrot.model.MandelbrotTuringMachine;
 
@@ -18,9 +17,7 @@ import java.awt.*;
  * Date: 05.02.2006
  * Time: 00:51:51
  */
-public class ComplexNumberPlaneCanvas extends JComponent implements MandelbrotSet {
-
-    static final long serialVersionUID = mySerialVersionUID;
+public class ComplexNumberPlaneCanvas extends JComponent {
 
     private MandelbrotTuringMachine mandelbrotTuringMachine;
     private Point worldDimensions;
