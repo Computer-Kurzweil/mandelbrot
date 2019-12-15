@@ -1,4 +1,4 @@
-package org.woehlke.simulation.mandelbrot.model;
+package org.woehlke.simulation.mandelbrot.model.cost;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -7,9 +7,11 @@ package org.woehlke.simulation.mandelbrot.model;
  * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
  *
- * Created by tw on 23.08.15.
+ * Created by tw on 18.08.15.
  */
-public enum ApplicationStatus {
-    MANDELBROT,
-    JULIA_SET
+public enum Phase {
+    SEARCH_THE_SET,
+    WALK_AROUND_THE_SET,
+    COLOR_THE_OUTSIDE,
+    ALL_DONE
 }

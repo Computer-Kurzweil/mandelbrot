@@ -1,5 +1,7 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import java.util.Objects;
+
 /**
  * Mandelbrot Set drawn by a Turing Machine.
  *
@@ -12,8 +14,8 @@ package org.woehlke.simulation.mandelbrot.model;
  */
 public class Point {
 
-    private int x = 0;
-    private int y = 0;
+    private volatile int x = 0;
+    private volatile int y = 0;
 
     public Point() {
     }
@@ -26,6 +28,22 @@ public class Point {
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void moveUp() {
+        y--;
+    }
+
+    public void moveRight() {
+        x++;
+    }
+
+    public void moveDown() {
+        y++;
+    }
+
+    public void moveLeft() {
+        x--;
     }
 
     public int getX() {
@@ -47,28 +65,22 @@ public class Point {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof Point)) return false;
         Point point = (Point) o;
-
-        if (x != point.x) return false;
-        return y == point.y;
-
+        return getX() == point.getX() &&
+            getY() == point.getY();
     }
 
     @Override
     public int hashCode() {
-        int result = x;
-        result = 31 * result + y;
-        return result;
+        return Objects.hash(getX(), getY());
     }
 
-    public Point copy() {
-        return new Point(this);
-    }
-
-    public Point move10Left(){
-        this.x -= 10;
-        return this;
+    @Override
+    public String toString() {
+        return "Point{" +
+            "x=" + x +
+            ", y=" + y +
+            '}';
     }
 }

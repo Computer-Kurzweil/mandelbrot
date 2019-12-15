@@ -1,5 +1,7 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
+import org.woehlke.simulation.mandelbrot.model.cost.Phase;
+
 public class TuringPhase {
 
     private volatile Phase turingPhase;
@@ -9,12 +11,12 @@ public class TuringPhase {
     }
 
     public void start(){
-        this.turingPhase = Phase.GO_TO_SET;
+        this.turingPhase = Phase.SEARCH_THE_SET;
     }
 
     public void finishGoToSet(){
         System.out.println("===");
-        turingPhase=Phase.WALK_AROUND;
+        turingPhase=Phase.WALK_AROUND_THE_SET;
     }
 
     public void finishWalkAround() {

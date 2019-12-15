@@ -30,9 +30,9 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
     private final static String title = "Mandelbrot Set";
     private final static String subtitle = "Mandelbrot Set drawn by a Turing Machine";
 
-    private final ControllerThread controllerThread;
-    private final ComplexNumberPlaneCanvas canvas;
-    private final ApplicationModel applicationModel;
+    private volatile ControllerThread controllerThread;
+    private volatile ComplexNumberPlaneCanvas canvas;
+    private volatile ApplicationModel applicationModel;
 
     public MandelbrotSetFrame() {
         super(title);

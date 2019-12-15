@@ -19,9 +19,9 @@ import java.awt.*;
  */
 public class ComplexNumberPlaneCanvas extends JComponent {
 
-    private ApplicationModel app;
-    private org.woehlke.simulation.mandelbrot.model.Point worldDimensions;
-    private Dimension preferredSize;
+    private volatile ApplicationModel app;
+    private volatile org.woehlke.simulation.mandelbrot.model.Point worldDimensions;
+    private volatile Dimension preferredSize;
 
     public ComplexNumberPlaneCanvas(ApplicationModel app) {
         this.app = app;

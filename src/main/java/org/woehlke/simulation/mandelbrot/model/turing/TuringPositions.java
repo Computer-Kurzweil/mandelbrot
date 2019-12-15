@@ -1,16 +1,17 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
 import org.woehlke.simulation.mandelbrot.model.Point;
+import org.woehlke.simulation.mandelbrot.model.cost.Direction;
 
 public class TuringPositions {
 
-    private Point turingPosition;
-    private Point worldDimensions;
-    private Point firstSetPosition;
+    private volatile Point turingPosition;
+    private volatile Point worldDimensions;
+    private volatile Point firstSetPosition;
 
-    private Direction direction;
+    private volatile Direction direction;
 
-    private int steps;
+    private volatile int steps;
 
     public TuringPositions(Point worldDimensions) {
         this.worldDimensions = worldDimensions;
@@ -18,75 +19,67 @@ public class TuringPositions {
     }
 
     public void start() {
-        steps = 0;
+        this.steps = 0;
         this.turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
         this.direction = Direction.LEFT;
     }
 
-    public void markFirstSetPosition(){
-        steps = 0;
+    public synchronized void markFirstSetPosition(){
         this.firstSetPosition = turingPosition;
+        this.steps = 0;
     }
 
-    public Point getTuringPosition() {
+    public synchronized Point getTuringPosition() {
         return turingPosition;
     }
 
-    public Point getWorldDimensions() {
-        return worldDimensions;
-    }
-
-    public Point getFirstSetPosition() {
-        return firstSetPosition;
-    }
-
-    public void goForward() {
+    public synchronized void goForward() {
         //System.out.println(position.toString()+","+steps);
-        steps++;
-        switch (direction){
+        this.steps++;
+        switch (this.direction){
             case UP:
-                turingPosition.setY(turingPosition.getY()-1);
+                this.turingPosition.moveUp(); //.setY(turingPosition.getY()-1);
                 break;
             case RIGHT:
-                turingPosition.setX(turingPosition.getX()+1);
+                this.turingPosition.moveRight(); //.setX(turingPosition.getX()+1);
                 break;
             case DOWN:
-                turingPosition.setY(turingPosition.getY()+1);
+                this.turingPosition.moveDown();//.setY(turingPosition.getY()+1);
                 break;
             case LEFT:
-                turingPosition.setX(turingPosition.getX()-1);
+                this.turingPosition.moveLeft();//.setX(turingPosition.getX()-1);
                 break;
             default:
                 break;
         }
     }
 
-    public void turnRight() {
+    public synchronized void turnRight() {
         Direction newDirection;
-        switch (direction){
-            case UP: newDirection=Direction.RIGHT; break;
-            case RIGHT: newDirection=Direction.DOWN; break;
-            case DOWN:newDirection=Direction.LEFT; break;
-            case LEFT:newDirection=Direction.UP; break;
-            default:newDirection=direction; break;
+        switch (this.direction){
+            case UP: newDirection = Direction.RIGHT; break;
+            case RIGHT: newDirection = Direction.DOWN; break;
+            case DOWN: newDirection = Direction.LEFT; break;
+            case LEFT: newDirection = Direction.UP; break;
+            default: newDirection = this.direction; break;
         }
-        direction=newDirection;
+        this.direction = newDirection;
     }
 
-    public void turnLeft() {
+    public synchronized void turnLeft() {
         Direction newDirection;
-        switch (direction){
+        switch (this.direction){
             case UP: newDirection = Direction.LEFT; break;
             case RIGHT: newDirection = Direction.UP; break;
             case DOWN: newDirection = Direction.RIGHT; break;
             case LEFT: newDirection = Direction.DOWN; break;
-            default: newDirection = direction; break;
+            default: newDirection = this.direction; break;
         }
-        direction = newDirection;
+        this.direction = newDirection;
     }
 
-    public boolean isFinishedWalkAround() {
-        return (turingPosition.equals(firstSetPosition)) && (steps>100);
+    public synchronized boolean isFinishedWalkAround() {
+        return (this.turingPosition.equals(this.firstSetPosition)) && (this.steps>100);
     }
 
 }

@@ -6,9 +6,9 @@ public class GaussianNumberPlane {
 
     private volatile int[][] lattice;
 
+    private final Point worldDimensions;
     public final static int YET_UNCOMPUTED = -1;
 
-    private final Point worldDimensions;
 
     public GaussianNumberPlane(Point worldDimensions) {
         this.worldDimensions = worldDimensions;
@@ -25,7 +25,7 @@ public class GaussianNumberPlane {
     }
 
     public synchronized int getCellStatusFor(int x,int y){
-        return lattice[x][y]<0?0:lattice[x][y];
+        return (lattice[x][y])<0?0:lattice[x][y];
     }
 
     private ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {

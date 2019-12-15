@@ -1,10 +1,11 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
 import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 import org.woehlke.simulation.mandelbrot.model.turing.MandelbrotTuringMachine;
 
-import static org.woehlke.simulation.mandelbrot.model.ApplicationStatus.JULIA_SET;
-import static org.woehlke.simulation.mandelbrot.model.ApplicationStatus.MANDELBROT;
+import static org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus.JULIA_SET;
+import static org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus.MANDELBROT;
 
 public class ApplicationModel {
 

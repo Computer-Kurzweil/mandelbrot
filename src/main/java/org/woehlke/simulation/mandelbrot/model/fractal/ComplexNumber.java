@@ -1,6 +1,8 @@
 package org.woehlke.simulation.mandelbrot.model.fractal;
 
 
+import java.util.Objects;
+
 /**
  * Mandelbrot Set drawn by a Turing Machine.
  *
@@ -12,17 +14,16 @@ package org.woehlke.simulation.mandelbrot.model.fractal;
  */
 public class ComplexNumber {
 
-    private float real;
-    private float img;
+    private volatile float real;
+    private volatile float img;
 
-    private float realZ=0.0f;
-    private float imgZ=0.0f;
+    private volatile float realZ=0.0f;
+    private volatile float imgZ=0.0f;
 
-    private int iterations;
+    private volatile int iterations;
 
     public final static int MAX_ITERATIONS = 32;
     public final static int MAX_ITERATIONS_JULIA = 31;
-    public final static int IS_INSIDE_FRACTAL_SET = 0;
     private final static float DIVERGENCE_THRESHOLD = 4.0f;
 
     public float getReal() {
@@ -80,15 +81,30 @@ public class ComplexNumber {
     }
 
     @Override
-    public String toString() {
-        return "ComplexNumber{" +
-                "real=" + real +
-                ", img=" + img +
-                ", realZ=" + realZ +
-                ", imgZ=" + imgZ +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComplexNumber that = (ComplexNumber) o;
+        return Float.compare(that.real, real) == 0 &&
+            Float.compare(that.img, img) == 0 &&
+            Float.compare(that.realZ, realZ) == 0 &&
+            Float.compare(that.imgZ, imgZ) == 0 &&
+            iterations == that.iterations;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(real, img, realZ, imgZ, iterations);
+    }
 
-
+    @Override
+    public String toString() {
+        return "ComplexNumber{" +
+            "real=" + real +
+            ", img=" + img +
+            ", realZ=" + realZ +
+            ", imgZ=" + imgZ +
+            ", iterations=" + iterations +
+            '}';
+    }
 }
