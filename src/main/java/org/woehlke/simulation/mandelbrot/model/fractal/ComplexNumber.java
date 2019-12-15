@@ -17,14 +17,14 @@ public class ComplexNumber {
     private volatile double real;
     private volatile double img;
 
-    private volatile double realZ=0.0f;
-    private volatile double imgZ=0.0f;
+    private volatile double realZ=0.0d;
+    private volatile double imgZ=0.0d;
 
     private volatile int iterations;
 
     public final static int MAX_ITERATIONS = 32;
     public final static int MAX_ITERATIONS_JULIA = 31;
-    private final static float DIVERGENCE_THRESHOLD = 4.0f;
+    private final static double DIVERGENCE_THRESHOLD = 4.0d;
 
     public double getReal() {
         return real;
