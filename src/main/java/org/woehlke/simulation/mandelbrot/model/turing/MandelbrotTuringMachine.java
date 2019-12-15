@@ -14,9 +14,9 @@ import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
  */
 public class MandelbrotTuringMachine {
 
-    private final GaussianNumberPlane gaussianNumberPlane;
-    private final TuringPositions turingPositions;
-    private final TuringPhase turingPhase;
+    private volatile GaussianNumberPlane gaussianNumberPlane;
+    private volatile TuringPositions turingPositions;
+    private volatile TuringPhase turingPhase;
 
     public MandelbrotTuringMachine(GaussianNumberPlane gaussianNumberPlane) {
         this.gaussianNumberPlane = gaussianNumberPlane;
@@ -24,13 +24,13 @@ public class MandelbrotTuringMachine {
         this.turingPositions = new TuringPositions(gaussianNumberPlane.getWorldDimensions());
     }
 
-    public void computeTheMandelbrotSet() {
+    public synchronized void computeTheMandelbrotSet() {
         this.turingPhase.start();
         this.gaussianNumberPlane.start();
         this.turingPositions.start();
     }
 
-    public void step() {
+    public synchronized void step() {
         System.out.println("+");
         switch(turingPhase.getTuringPhase()){
             case GO_TO_SET: stepGoToSet(); break;

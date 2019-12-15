@@ -39,7 +39,7 @@ public class ComplexNumber {
         iterations=0;
     }
 
-    public int computeMandelbrotSet() {
+    public synchronized int computeMandelbrotSet() {
         iterations=0;
         realZ=0.0f;
         imgZ=0.0f;
@@ -55,7 +55,7 @@ public class ComplexNumber {
         return iterations;
     }
 
-    public int computeJuliaSet(ComplexNumber c) {
+    public synchronized int computeJuliaSet(ComplexNumber c) {
         iterations=0;
         realZ = real;
         imgZ = img;
@@ -71,11 +71,11 @@ public class ComplexNumber {
         return iterations;
     }
 
-    public boolean isInMandelbrotSet() {
+    public synchronized boolean isInMandelbrotSet() {
         return (iterations == MAX_ITERATIONS);
     }
 
-    public boolean isNotDivergent(){
+    public synchronized boolean isNotDivergent(){
         return (( realZ*realZ + imgZ*imgZ ) < DIVERGENCE_THRESHOLD);
     }
 

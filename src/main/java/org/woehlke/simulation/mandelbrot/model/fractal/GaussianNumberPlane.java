@@ -4,7 +4,7 @@ import org.woehlke.simulation.mandelbrot.model.Point;
 
 public class GaussianNumberPlane {
 
-    private int[][] lattice;
+    private volatile int[][] lattice;
 
     public final static int YET_UNCOMPUTED = -1;
 
@@ -16,7 +16,7 @@ public class GaussianNumberPlane {
         start();
     }
 
-    public void start(){
+    public synchronized void start(){
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 lattice[x][y] = YET_UNCOMPUTED;
@@ -24,11 +24,11 @@ public class GaussianNumberPlane {
         }
     }
 
-    public int getCellStatusFor(int x,int y){
+    public synchronized int getCellStatusFor(int x,int y){
         return lattice[x][y]<0?0:lattice[x][y];
     }
 
-    public ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {
+    private ComplexNumber getComplexNumberFromLatticeCoordsForMandelbrot(Point turingPosition) {
         float realX = -2.2f + (3.2f*turingPosition.getX())/worldDimensions.getX();
         float imgY = -1.17f + (2.34f*turingPosition.getY())/worldDimensions.getY();
         return new ComplexNumber(realX,imgY);
@@ -40,13 +40,13 @@ public class GaussianNumberPlane {
         return new ComplexNumber(realX,imgY);
     }
 
-    public boolean isInMandelbrotSet(Point turingPosition) {
+    public synchronized boolean isInMandelbrotSet(Point turingPosition) {
         ComplexNumber position = this.getComplexNumberFromLatticeCoordsForMandelbrot(turingPosition);
         lattice[turingPosition.getX()][turingPosition.getY()] = position.computeMandelbrotSet();
         return position.isInMandelbrotSet();
     }
 
-    public void fillTheOutsideWithColors(){
+    public synchronized void fillTheOutsideWithColors(){
         System.out.println(";");
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
@@ -57,7 +57,7 @@ public class GaussianNumberPlane {
         }
     }
 
-    public void computeTheJuliaSetFor(Point point) {
+    public synchronized void computeTheJuliaSetFor(Point point) {
         ComplexNumber c = getComplexNumberFromLatticeCoordsForMandelbrot(point);
         for(int y = 0; y < worldDimensions.getY(); y++) {
             for (int x = 0; x < worldDimensions.getX(); x++) {

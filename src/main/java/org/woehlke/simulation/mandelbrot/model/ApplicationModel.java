@@ -8,10 +8,9 @@ import static org.woehlke.simulation.mandelbrot.model.ApplicationStatus.MANDELBR
 
 public class ApplicationModel {
 
-    private final GaussianNumberPlane gaussianNumberPlane;
-    private final MandelbrotTuringMachine mandelbrotTuringMachine;
-
-    private ApplicationStatus applicationStatus;
+    private volatile GaussianNumberPlane gaussianNumberPlane;
+    private volatile MandelbrotTuringMachine mandelbrotTuringMachine;
+    private volatile ApplicationStatus applicationStatus;
 
     public ApplicationModel(Point worldDimensions) {
         gaussianNumberPlane = new GaussianNumberPlane(worldDimensions);
@@ -19,7 +18,7 @@ public class ApplicationModel {
         applicationStatus = MANDELBROT;
     }
 
-    public void click(Point c) {
+    public synchronized void click(Point c) {
         ApplicationStatus nextApplicationStatus = MANDELBROT;
         switch (applicationStatus){
             case MANDELBROT:
@@ -34,13 +33,13 @@ public class ApplicationModel {
         this.applicationStatus = nextApplicationStatus;
     }
 
-    public void step() {
+    public synchronized void step() {
         if(applicationStatus == MANDELBROT){
             mandelbrotTuringMachine.step();
         }
     }
 
-    public int getCellStatusFor(int x, int y) {
+    public synchronized int getCellStatusFor(int x, int y) {
         return gaussianNumberPlane.getCellStatusFor(x,y);
     }
 
