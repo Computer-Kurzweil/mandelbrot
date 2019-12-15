@@ -15,18 +15,18 @@ public class TuringPhase {
     }
 
     public void finishGoToSet(){
-        System.out.println("===");
+        //System.out.println("===");
         turingPhase=Phase.WALK_AROUND_THE_SET;
     }
 
     public void finishWalkAround() {
         turingPhase=Phase.COLOR_THE_OUTSIDE;
-        System.out.println("###");
+        //System.out.println("###");
     }
 
     public void finishFillTheOutsideWithColors() {
         turingPhase=Phase.ALL_DONE;
-        System.out.println("---");
+        //System.out.println("---");
     }
 
     public Phase getTuringPhase() {

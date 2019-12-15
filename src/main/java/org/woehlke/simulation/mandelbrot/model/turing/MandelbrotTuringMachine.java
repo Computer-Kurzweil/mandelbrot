@@ -26,11 +26,11 @@ public class MandelbrotTuringMachine {
     }
 
     public void computeTheMandelbrotSet() {
-        System.out.println("*******");
+        //System.out.println("*******");
         this.turingPhase.start();
         this.gaussianNumberPlane.start();
         this.turingPositions.start();
-        System.out.println("*******");
+        //System.out.println("*******");
     }
 
     public synchronized void step() {
@@ -38,24 +38,24 @@ public class MandelbrotTuringMachine {
             case SEARCH_THE_SET: stepGoToSet(); break;
             case WALK_AROUND_THE_SET: stepWalkAround(); break;
             case COLOR_THE_OUTSIDE: fillTheOutsideWithColors(); break;
-            case ALL_DONE:  System.out.print("||||"); break;
-            default: System.out.print("////"); break;
+            case ALL_DONE:  //System.out.print("||||"); break;
+            default: //System.out.print("////"); break;
         }
     }
 
     private void stepGoToSet(){
-        System.out.print(".");
+        //System.out.print(".");
         if(this.gaussianNumberPlane.isInMandelbrotSet(this.turingPositions.getTuringPosition())){
             this.turingPositions.markFirstSetPosition();
             this.turingPhase.finishGoToSet();
         } else {
             this.turingPositions.goForward();
         }
-        System.out.print(".");
+        //System.out.print(".");
     }
 
     private void stepWalkAround(){
-        System.out.print(":");
+        //System.out.print(":");
         if(gaussianNumberPlane.isInMandelbrotSet(this.turingPositions.getTuringPosition())){
             this.turingPositions.turnRight();
         } else {
@@ -65,13 +65,13 @@ public class MandelbrotTuringMachine {
         if(this.turingPositions.isFinishedWalkAround()){
             this.turingPhase.finishWalkAround();
         }
-        System.out.print(":");
+        //System.out.print(":");
     }
 
     private void fillTheOutsideWithColors(){
-        System.out.println("@");
+        //System.out.println("@");
         this.gaussianNumberPlane.fillTheOutsideWithColors();
         this.turingPhase.finishFillTheOutsideWithColors();
-        System.out.println("@");
+        //System.out.println("@");
     }
 }

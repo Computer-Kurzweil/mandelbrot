@@ -40,7 +40,9 @@ public class ControllerThread extends Thread implements Runnable {
             this.applicationModel.step();
             canvas.repaint();
             try { sleep(THREAD_SLEEP_TIME); }
-            catch (InterruptedException e) { System.out.println(e.getMessage()); }
+            catch (InterruptedException e) {
+            //    System.out.println(e.getMessage());
+            }
         }
         while (doIt);
     }

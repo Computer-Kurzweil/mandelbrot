@@ -34,7 +34,7 @@ public class TuringPositions {
     }
 
     public synchronized void goForward() {
-        //System.out.println(position.toString()+","+steps);
+        ////System.out.println(position.toString()+","+steps);
         this.steps++;
         switch (this.direction){
             case UP:
