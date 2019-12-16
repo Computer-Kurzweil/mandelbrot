@@ -1,7 +1,6 @@
 package org.woehlke.simulation.mandelbrot.control;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
-import org.woehlke.simulation.mandelbrot.view.ApplicationCanvas;
 import org.woehlke.simulation.mandelbrot.view.ApplicationFrame;
 
 /**
