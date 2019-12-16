@@ -3,8 +3,8 @@ package org.woehlke.simulation.mandelbrot.view;
 import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
-import org.woehlke.simulation.mandelbrot.model.Point;
-import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
+import org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;

@@ -1,7 +1,7 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
-import org.woehlke.simulation.mandelbrot.model.Point;
-import org.woehlke.simulation.mandelbrot.model.cost.Direction;
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
+import org.woehlke.simulation.mandelbrot.model.constant.Direction;
 
 public class TuringPositions {
 

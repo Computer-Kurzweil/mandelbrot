@@ -1,6 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model.fractal;
 
-import org.woehlke.simulation.mandelbrot.model.Point;
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
 
 public class GaussianNumberPlane {
 
@@ -57,18 +57,26 @@ public class GaussianNumberPlane {
         //System.out.print(";");
     }
 
-    public synchronized void computeTheJuliaSetFor(Point point) {
-        ComplexNumber c = getComplexNumberFromLatticeCoordsForMandelbrot(point);
+    private volatile ComplexNumber complexNumberForJuliaSetC;
+
+    public synchronized void computeTheJuliaSetFor(Point pointFromMandelbrotSet) {
+        this.complexNumberForJuliaSetC = getComplexNumberFromLatticeCoordsForMandelbrot(pointFromMandelbrotSet);
         for(int y = 0; y < worldDimensions.getY(); y++) {
             for (int x = 0; x < worldDimensions.getX(); x++) {
                 Point zPoint = new Point(x, y);
                 ComplexNumber z = this.getComplexNumberFromLatticeCoordsForJulia(zPoint);
-                lattice[x][y] = z.computeJuliaSet(c);
+                lattice[x][y] = z.computeJuliaSet(complexNumberForJuliaSetC);
             }
         }
     }
 
     public synchronized Point getWorldDimensions() {
         return worldDimensions;
+    }
+
+    public void zoomInTheMandelbrotSet(Point zoomPoint) {
+    }
+
+    public void zoomInTheJuliaSetFor(Point zoomPoint) {
     }
 }

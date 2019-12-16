@@ -1,6 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
-import org.woehlke.simulation.mandelbrot.model.cost.Phase;
+import org.woehlke.simulation.mandelbrot.model.constant.Phase;
 
 public class TuringPhase {
 

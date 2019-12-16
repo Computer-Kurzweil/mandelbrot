@@ -33,14 +33,31 @@ public class MandelbrotTuringMachine {
         //System.out.println("*******");
     }
 
-    public synchronized void step() {
+    public synchronized boolean step() {
+        boolean repaint=true;
         switch(turingPhase.getTuringPhase()){
-            case SEARCH_THE_SET: stepGoToSet(); break;
-            case WALK_AROUND_THE_SET: stepWalkAround(); break;
-            case COLOR_THE_OUTSIDE: fillTheOutsideWithColors(); break;
-            case ALL_DONE:  //System.out.print("||||"); break;
-            default: //System.out.print("////"); break;
+            case SEARCH_THE_SET:
+                stepGoToSet();
+                repaint=false;
+                break;
+            case WALK_AROUND_THE_SET:
+                stepWalkAround();
+                repaint=true;
+                break;
+            case COLOR_THE_OUTSIDE:
+                fillTheOutsideWithColors();
+                repaint=true;
+                break;
+            case ALL_DONE:
+                //System.out.print("||||");
+                repaint=true;
+                break;
+            default:
+                //System.out.print("////");
+                repaint=false;
+                break;
         }
+        return repaint;
     }
 
     private void stepGoToSet(){

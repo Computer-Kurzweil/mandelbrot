@@ -1,12 +1,13 @@
 package org.woehlke.simulation.mandelbrot.model;
 
 import org.woehlke.simulation.mandelbrot.config.Config;
-import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
+import org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus;
 import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
 import org.woehlke.simulation.mandelbrot.model.turing.MandelbrotTuringMachine;
 
-import static org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus.JULIA_SET;
-import static org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus.MANDELBROT;
+import static org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus.JULIA_SET;
+import static org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus.MANDELBROT;
 
 public class ApplicationModel {
 
@@ -23,25 +24,44 @@ public class ApplicationModel {
         applicationStatus = MANDELBROT;
     }
 
-    public synchronized void click(Point c) {
+    public synchronized boolean click(Point c) {
+        boolean repaint=false;
         ApplicationStatus nextApplicationStatus = MANDELBROT;
         switch (applicationStatus){
             case MANDELBROT:
                 nextApplicationStatus = JULIA_SET;
                 gaussianNumberPlane.computeTheJuliaSetFor(c);
+                repaint=true;
                 break;
             case JULIA_SET:
                 nextApplicationStatus = MANDELBROT;
                 mandelbrotTuringMachine.computeTheMandelbrotSet();
                 break;
+            case MANDELBROT_ZOOM:
+                gaussianNumberPlane.zoomInTheMandelbrotSet(c);
+                break;
+            case JULIA_SET_ZOOM:
+                gaussianNumberPlane.zoomInTheJuliaSetFor(c);
+                break;
         }
         this.applicationStatus = nextApplicationStatus;
+        return repaint;
     }
 
-    public synchronized void step() {
-        if(applicationStatus == MANDELBROT){
-            mandelbrotTuringMachine.step();
+    public synchronized boolean step() {
+        boolean repaint=false;
+        switch (applicationStatus){
+            case MANDELBROT:
+                repaint = mandelbrotTuringMachine.step();
+                break;
+            case JULIA_SET:
+                break;
+            case MANDELBROT_ZOOM:
+                break;
+            case JULIA_SET_ZOOM:
+                break;
         }
+        return repaint;
     }
 
     public synchronized int getCellStatusFor(int x, int y) {
@@ -52,11 +72,11 @@ public class ApplicationModel {
         return gaussianNumberPlane.getWorldDimensions();
     }
 
-    public ApplicationStatus getApplicationStatus() {
+    public synchronized ApplicationStatus getApplicationStatus() {
         return applicationStatus;
     }
 
-    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+    public synchronized void setApplicationStatus(ApplicationStatus applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
 }

@@ -3,7 +3,7 @@ package org.woehlke.simulation.mandelbrot.model.turing;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.woehlke.simulation.mandelbrot.model.cost.Phase.*;
+import static org.woehlke.simulation.mandelbrot.model.constant.Phase.*;
 
 public class TuringPhaseTest {
 

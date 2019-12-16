@@ -1,4 +1,4 @@
-package org.woehlke.simulation.mandelbrot.model.cost;
+package org.woehlke.simulation.mandelbrot.model.constant;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.

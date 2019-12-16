@@ -1,6 +1,7 @@
 package org.woehlke.simulation.mandelbrot.view;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.awt.*;
 public class CanvasComplexNumberPlane extends JComponent {
 
     private volatile ApplicationModel app;
-    private volatile org.woehlke.simulation.mandelbrot.model.Point worldDimensions;
+    private volatile Point worldDimensions;
     private volatile Dimension preferredSize;
 
     public CanvasComplexNumberPlane(ApplicationModel app) {

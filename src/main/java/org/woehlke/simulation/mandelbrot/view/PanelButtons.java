@@ -1,6 +1,6 @@
 package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
+import org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus;
 
 import javax.swing.*;
 import java.awt.*;
