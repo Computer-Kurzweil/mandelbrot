@@ -10,6 +10,7 @@ public class GaussianNumberPlane {
     private volatile ComplexNumber complexNumberForJuliaSetC;
 
     private final Point worldDimensions;
+
     public final static int YET_UNCOMPUTED = -1;
 
     private final static double complexWorldDimensionRealX = 3.2d;
@@ -76,7 +77,6 @@ public class GaussianNumberPlane {
     }
 
     public synchronized void fillTheOutsideWithColors(){
-        //System.out.print(";");
         for(int y=0;y<worldDimensions.getY();y++){
             for(int x=0;x<worldDimensions.getX();x++){
                 if(lattice[x][y] == YET_UNCOMPUTED){
@@ -84,7 +84,6 @@ public class GaussianNumberPlane {
                 }
             }
         }
-        //System.out.print(";");
     }
 
     private synchronized void computeTheJuliaSetForC(ComplexNumber c) {
@@ -101,10 +100,6 @@ public class GaussianNumberPlane {
         ComplexNumber c = getComplexNumberFromLatticeCoordsForMandelbrot(pointFromMandelbrotSet);
         this.complexNumberForJuliaSetC = c;
         computeTheJuliaSetForC(c);
-    }
-
-    public synchronized Point getWorldDimensions() {
-        return worldDimensions;
     }
 
     public void zoomIntoTheMandelbrotSet(Point zoomPoint) {

@@ -1,8 +1,5 @@
 package org.woehlke.simulation.mandelbrot.model.fractal;
 
-
-import org.woehlke.simulation.mandelbrot.model.helper.Point;
-
 import java.util.Objects;
 
 /**
