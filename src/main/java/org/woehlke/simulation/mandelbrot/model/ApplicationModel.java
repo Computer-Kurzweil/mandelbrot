@@ -73,12 +73,12 @@ public class ApplicationModel {
 
     public void setModeSwitch() {
         this.applicationStateMachine.setModeSwitch();
-        this.frame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        this.frame.setModeSwitch();
     }
 
     public void setModeZoom() {
         this.applicationStateMachine.setModeZoom();
-        this.frame.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        this.frame.setModeZoom();
     }
 
     public GaussianNumberPlane getGaussianNumberPlane() {

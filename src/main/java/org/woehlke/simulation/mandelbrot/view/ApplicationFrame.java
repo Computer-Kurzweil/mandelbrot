@@ -51,6 +51,7 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
         showMeInit();
+        setModeSwitch();
         this.controllerThread.start();
     }
 
@@ -131,4 +132,11 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         this.toFront();
     }
 
+    public void setModeSwitch() {
+        canvas.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+    }
+
+    public void setModeZoom() {
+        canvas.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
+    }
 }
