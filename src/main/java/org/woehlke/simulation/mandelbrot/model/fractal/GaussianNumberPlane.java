@@ -106,12 +106,14 @@ public class GaussianNumberPlane {
 
     private synchronized ComplexNumber getComplexNumberFromLatticeCoordsForZoomedMandelbrot(Point turingPosition) {
         double realX = (
-            complexCenterForMandelbrot.getReal()/this.getZoomLevel()
+            ( complexCenterForMandelbrot.getReal() / this.getZoomLevel() )
+            + getZoomCenter().getReal()
             + ( complexWorldDimensions.getReal() * turingPosition.getX() )
             / ( worldDimensions.getX() * this.getZoomLevel() )
         );
         double imgY = (
-            complexCenterForMandelbrot.getImg()/this.getZoomLevel()
+            ( complexCenterForMandelbrot.getImg() / this.getZoomLevel() )
+            + getZoomCenter().getImg()
             + ( complexWorldDimensions.getImg() * turingPosition.getY() )
             / ( worldDimensions.getY() * this.getZoomLevel() )
         );
