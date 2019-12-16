@@ -20,13 +20,13 @@ import java.awt.*;
 public class CanvasComplexNumberPlane extends JComponent {
 
     private volatile ApplicationModel app;
-    private volatile Point worldDimensions;
     private volatile Dimension preferredSize;
 
     public CanvasComplexNumberPlane(ApplicationModel app) {
         this.app = app;
-        this.worldDimensions = app.getWorldDimensions();
-        this.preferredSize = new Dimension(this.worldDimensions.getX(), this.worldDimensions.getY());
+        int width = this.app.getWorldDimensions().getWidth();
+        int height = this.app.getWorldDimensions().getHeight();
+        this.preferredSize = new Dimension(width, height);
         this.setPreferredSize(preferredSize);
     }
 
@@ -35,9 +35,10 @@ public class CanvasComplexNumberPlane extends JComponent {
         super.paintComponent(g);
         int red = 0;
         int green = 0;
-        for(int y = 0; y < worldDimensions.getY(); y++){
-            for(int x = 0; x < worldDimensions.getX(); x++){
-                int blue = (((app.getCellStatusFor(x,y))*8)%256);
+        int blue = 0;
+        for(int y = 0; y < app.getWorldDimensions().getY(); y++){
+            for(int x = 0; x < app.getWorldDimensions().getX(); x++){
+                blue = (((app.getCellStatusFor(x,y))*8)%256);
                 Color stateColor = new Color(red, green, blue);
                 g.setColor(stateColor);
                 g.drawLine(x,y,x,y);

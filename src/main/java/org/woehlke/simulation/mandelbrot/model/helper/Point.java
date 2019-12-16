@@ -46,6 +46,11 @@ public class Point {
         x--;
     }
 
+    public int getWidth(){
+        return x;
+    }
+    public int getHeight() { return y; }
+
     public int getX() {
         return x;
     }

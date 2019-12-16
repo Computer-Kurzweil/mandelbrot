@@ -29,7 +29,10 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
     private volatile ControllerThread controllerThread;
     private volatile CanvasComplexNumberPlane canvas;
     private volatile PanelButtons panelButtons;
+    private volatile PanelSubtitle panelSubtitle;
+    private volatile PanelCopyright panelCopyright;
     private volatile ApplicationModel applicationModel;
+    private volatile JSeparator separator;
     private volatile Config config;
 
     public FrameMandelbrotSetApplication(Config config) {
@@ -40,9 +43,9 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         this.canvas = new CanvasComplexNumberPlane(applicationModel);
         this.controllerThread = new ControllerThread(canvas);
         this.panelButtons = new PanelButtons(this);
-        PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
-        PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
-        JSeparator separator = new JSeparator();
+        this.panelSubtitle = new PanelSubtitle(config.getSubtitle());
+        this.panelCopyright = new PanelCopyright(config.getCopyright());
+        this.separator = new JSeparator();
         rootPane.setLayout(layout);
         rootPane.add(panelSubtitle);
         rootPane.add(canvas);
@@ -55,12 +58,6 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         setVisible(true);
         toFront();
         this.controllerThread.start();
-    }
-
-    private void showMe(){
-        pack();
-        setVisible(true);
-        toFront();
     }
 
     public void windowOpened(WindowEvent e) {
@@ -115,5 +112,28 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
 
     public void setMode(ApplicationStatus mode) {
         applicationModel.setApplicationStatus(mode);
+    }
+
+    /**
+     * TODO write doc.
+     */
+    public void showMe() {
+        pack();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double height = this.applicationModel.getWorldDimensions().getHeight();
+        double width = this.applicationModel.getWorldDimensions().getWidth();
+        height += this.panelSubtitle.getHeight()
+            + this.panelCopyright.getHeight()
+            + this.separator.getHeight()
+            + this.panelButtons.getHeight();
+        double startX = (screenSize.getWidth() - width) / 2d;
+        double startY = (screenSize.getHeight() - height) / 2d;
+        int myheight = Double.valueOf(height).intValue();
+        int mywidth = Double.valueOf(width).intValue();
+        int mystartX = Double.valueOf(startX).intValue();
+        int mystartY = Double.valueOf(startY).intValue();
+        this.setBounds(mystartX, mystartY, mywidth, myheight);
+        rootPane.setVisible(true);
+        toFront();
     }
 }
