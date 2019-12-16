@@ -12,19 +12,16 @@ public class TuringPhaseState {
         this.turingTuringPhase = TuringPhase.SEARCH_THE_SET;
     }
 
-    public void finishGoToSet(){
-        //System.out.println("===");
+    public void finishSearchTheSet(){
         turingTuringPhase = TuringPhase.WALK_AROUND_THE_SET;
     }
 
     public void finishWalkAround() {
-        turingTuringPhase = TuringPhase.COLOR_THE_OUTSIDE;
-        //System.out.println("###");
+        turingTuringPhase = TuringPhase.FILL_THE_OUTSIDE_WITH_COLOR;
     }
 
     public void finishFillTheOutsideWithColors() {
-        turingTuringPhase = TuringPhase.ALL_DONE;
-        //System.out.println("---");
+        turingTuringPhase = TuringPhase.FINISHED;
     }
 
     public TuringPhase getTuringTuringPhase() {

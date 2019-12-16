@@ -33,20 +33,19 @@ public class TuringPositions {
     }
 
     public synchronized void goForward() {
-        ////System.out.println(position.toString()+","+steps);
         this.steps++;
         switch (this.turingDirection){
             case UP:
-                this.turingPosition.moveUp(); //.setY(turingPosition.getY()-1);
+                this.turingPosition.moveUp();
                 break;
             case RIGHT:
-                this.turingPosition.moveRight(); //.setX(turingPosition.getX()+1);
+                this.turingPosition.moveRight();
                 break;
             case DOWN:
-                this.turingPosition.moveDown();//.setY(turingPosition.getY()+1);
+                this.turingPosition.moveDown();
                 break;
             case LEFT:
-                this.turingPosition.moveLeft();//.setX(turingPosition.getX()-1);
+                this.turingPosition.moveLeft();
                 break;
             default:
                 break;

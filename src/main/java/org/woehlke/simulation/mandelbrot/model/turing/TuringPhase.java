@@ -12,6 +12,6 @@ package org.woehlke.simulation.mandelbrot.model.turing;
 public enum TuringPhase {
     SEARCH_THE_SET,
     WALK_AROUND_THE_SET,
-    COLOR_THE_OUTSIDE,
-    ALL_DONE
+    FILL_THE_OUTSIDE_WITH_COLOR,
+    FINISHED
 }
