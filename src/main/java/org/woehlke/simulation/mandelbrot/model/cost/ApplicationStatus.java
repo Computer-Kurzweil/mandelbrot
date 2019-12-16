@@ -11,5 +11,7 @@ package org.woehlke.simulation.mandelbrot.model.cost;
  */
 public enum ApplicationStatus {
     MANDELBROT,
-    JULIA_SET
+    JULIA_SET,
+    MANDELBROT_ZOOM,
+    JULIA_SET_ZOOM
 }

@@ -4,14 +4,12 @@ import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.Point;
+import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
@@ -22,31 +20,35 @@ import java.io.Serializable;
  * Date: 04.02.2006
  * Time: 18:47:46
  */
-public class MandelbrotSetFrame extends JFrame implements ImageObserver,
+public class FrameMandelbrotSetApplication extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
         WindowListener, MouseListener {
 
     private volatile ControllerThread controllerThread;
-    private volatile ComplexNumberPlaneCanvas canvas;
+    private volatile CanvasComplexNumberPlane canvas;
+    private volatile PanelButtons panelButtons;
     private volatile ApplicationModel applicationModel;
+    private volatile Config config;
 
-    public MandelbrotSetFrame(Config config) {
+    public FrameMandelbrotSetApplication(Config config) {
         super(config.getTitle());
-        BorderLayout layout = new BorderLayout();
-        int width = config.getWidth();
-        int height = config.getHeight();
+        this.config = config;
+        BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
+        this.applicationModel = new ApplicationModel(config);
+        this.canvas = new CanvasComplexNumberPlane(applicationModel);
+        this.controllerThread = new ControllerThread(canvas);
+        this.panelButtons = new PanelButtons(this);
         PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
         PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
-        Point worldDimensions = new Point(width,height);
-        this.applicationModel = new ApplicationModel(worldDimensions);
-        this.canvas = new ComplexNumberPlaneCanvas(applicationModel);
-        this.controllerThread = new ControllerThread(canvas);
-        this.setLayout(layout);
-        this.add(panelSubtitle, BorderLayout.NORTH);
-        this.add(canvas, BorderLayout.CENTER);
-        this.add(panelCopyright, BorderLayout.SOUTH);
+        JSeparator separator = new JSeparator();
+        rootPane.setLayout(layout);
+        rootPane.add(panelSubtitle);
+        rootPane.add(canvas);
+        rootPane.add(panelCopyright);
+        rootPane.add(separator);
+        rootPane.add(panelButtons);
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
         pack();
@@ -106,4 +108,12 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
 
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setMode(ApplicationStatus mode) {
+        applicationModel.setApplicationStatus(mode);
+    }
 }

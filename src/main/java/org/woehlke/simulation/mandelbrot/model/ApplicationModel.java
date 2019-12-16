@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model;
 
+import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.model.cost.ApplicationStatus;
 import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 import org.woehlke.simulation.mandelbrot.model.turing.MandelbrotTuringMachine;
@@ -13,7 +14,10 @@ public class ApplicationModel {
     private volatile MandelbrotTuringMachine mandelbrotTuringMachine;
     private volatile ApplicationStatus applicationStatus;
 
-    public ApplicationModel(Point worldDimensions) {
+    public ApplicationModel(Config config) {
+        int width = config.getWidth();
+        int height = config.getHeight();
+        Point worldDimensions = new Point(width,height);
         gaussianNumberPlane = new GaussianNumberPlane(worldDimensions);
         mandelbrotTuringMachine = new MandelbrotTuringMachine(gaussianNumberPlane);
         applicationStatus = MANDELBROT;
@@ -46,5 +50,13 @@ public class ApplicationModel {
 
     public Point getWorldDimensions(){
         return gaussianNumberPlane.getWorldDimensions();
+    }
+
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 }

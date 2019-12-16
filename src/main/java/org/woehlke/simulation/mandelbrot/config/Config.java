@@ -14,6 +14,11 @@ public class Config implements ConfigProperties {
     private int width;
     private int height;
 
+    private String buttonsLabel;
+    private String buttonsSwitch;
+    private String buttonsZoom;
+    private String buttonsSetMode;
+
     public Config() {
         String appPropertiesFile = (APP_PROPERTIES_FILENAME);
         Properties prop = new Properties();
@@ -32,6 +37,10 @@ public class Config implements ConfigProperties {
             String heightString = prop.getProperty(KEY_HEIGHT,HEIGHT);
             width = Integer.parseInt(widthString);
             height = Integer.parseInt(heightString);
+            buttonsLabel = prop.getProperty(KEY_BUTTONS_LABEL,BUTTONS_LABEL);
+            buttonsSwitch = prop.getProperty(KEY_BUTTONS_SWITCH,BUTTONS_SWITCH);
+            buttonsZoom = prop.getProperty(KEY_BUTTONS_ZOOM,BUTTONS_ZOOM);
+            buttonsSetMode = prop.getProperty(KEY_BUTTONS_SETMODE,BUTTONS_SETMODE);
         } catch (IOException ex) {
             System.out.println(ex.getLocalizedMessage());
         }
@@ -41,40 +50,36 @@ public class Config implements ConfigProperties {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getSubtitle() {
         return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
     }
 
     public String getCopyright() {
         return copyright;
     }
 
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
-
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public String getButtonsLabel() {
+        return buttonsLabel;
+    }
+
+    public String getButtonsSwitch() {
+        return buttonsSwitch;
+    }
+
+    public String getButtonsZoom() {
+        return buttonsZoom;
+    }
+
+    public String getButtonsSetMode() {
+        return buttonsSetMode;
     }
 
     @Override
@@ -86,12 +91,16 @@ public class Config implements ConfigProperties {
             getHeight() == config.getHeight() &&
             Objects.equals(getTitle(), config.getTitle()) &&
             Objects.equals(getSubtitle(), config.getSubtitle()) &&
-            Objects.equals(getCopyright(), config.getCopyright());
+            Objects.equals(getCopyright(), config.getCopyright()) &&
+            Objects.equals(getButtonsLabel(), config.getButtonsLabel()) &&
+            Objects.equals(getButtonsSwitch(), config.getButtonsSwitch()) &&
+            Objects.equals(getButtonsZoom(), config.getButtonsZoom()) &&
+            Objects.equals(getButtonsSetMode(), config.getButtonsSetMode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getSubtitle(), getCopyright(), getWidth(), getHeight());
+        return Objects.hash(getTitle(), getSubtitle(), getCopyright(), getWidth(), getHeight(), getButtonsLabel(), getButtonsSwitch(), getButtonsZoom(), getButtonsSetMode());
     }
 
     @Override
@@ -102,6 +111,10 @@ public class Config implements ConfigProperties {
             ", copyright='" + copyright + '\'' +
             ", width=" + width +
             ", height=" + height +
+            ", buttonsLabel='" + buttonsLabel + '\'' +
+            ", buttonsSwitch='" + buttonsSwitch + '\'' +
+            ", buttonsZoom='" + buttonsZoom + '\'' +
+            ", buttonsSetMode='" + buttonsSetMode + '\'' +
             '}';
     }
 }
