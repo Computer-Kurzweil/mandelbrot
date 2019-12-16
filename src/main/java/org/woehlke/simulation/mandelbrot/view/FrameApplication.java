@@ -20,7 +20,7 @@ import java.io.Serializable;
  * Date: 04.02.2006
  * Time: 18:47:46
  */
-public class FrameMandelbrotSetApplication extends JFrame implements ImageObserver,
+public class FrameApplication extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
@@ -28,23 +28,22 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
 
     private volatile ControllerThread controllerThread;
     private volatile CanvasComplexNumberPlane canvas;
-    private volatile PanelButtons panelButtons;
-    private volatile PanelSubtitle panelSubtitle;
-    private volatile PanelCopyright panelCopyright;
     private volatile ApplicationModel applicationModel;
-    private volatile JSeparator separator;
     private volatile Config config;
+    private volatile Rectangle rectangleBounds;
+    private volatile Dimension dimensionSize;
 
-    public FrameMandelbrotSetApplication(Config config) {
+    public FrameApplication(Config config) {
         super(config.getTitle());
         this.config = config;
         this.applicationModel = new ApplicationModel(config);
         BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.canvas = new CanvasComplexNumberPlane(applicationModel);
-        this.panelButtons = new PanelButtons(this);
-        this.panelSubtitle = new PanelSubtitle(config.getSubtitle());
-        this.panelCopyright = new PanelCopyright(config.getCopyright());
-        this.separator = new JSeparator();
+        this.controllerThread = new ControllerThread(this);
+        PanelButtons panelButtons = new PanelButtons(this);
+        PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
+        PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
+        JSeparator separator = new JSeparator();
         rootPane.setLayout(layout);
         rootPane.add(panelSubtitle);
         rootPane.add(canvas);
@@ -54,7 +53,6 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
         showMe();
-        this.controllerThread = new ControllerThread(canvas);
         this.controllerThread.start();
     }
 
@@ -112,11 +110,7 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         applicationModel.setApplicationStatus(mode);
     }
 
-    /**
-     * TODO write doc.
-     */
-    public void showMe() {
-        pack();
+    public void showMeInit() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = this.rootPane.getWidth();
         double height  = this.canvas.getHeight() + 180;
@@ -126,12 +120,48 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         int mywidth = Double.valueOf(width).intValue();
         int mystartX = Double.valueOf(startX).intValue();
         int mystartY = Double.valueOf(startY).intValue();
-        Rectangle rectangle = new Rectangle(mystartX, mystartY, mywidth, myheight);
-        Dimension dimension = new Dimension(mywidth, myheight);
-        this.setBounds(rectangle);
-        this.setSize(dimension);
-        this.setPreferredSize(dimension);
+        this.rectangleBounds = new Rectangle(mystartX, mystartY, mywidth, myheight);
+        this.dimensionSize = new Dimension(mywidth, myheight);
+    }
+
+    /**
+     * TODO write doc.
+     */
+    public void showMe() {
+        pack();
+        showMeInit();
+        this.setBounds(this.rectangleBounds);
+        this.setSize(this.dimensionSize);
+        this.setPreferredSize(this.dimensionSize);
         setVisible(true);
         toFront();
+    }
+
+    public ControllerThread getControllerThread() {
+        return controllerThread;
+    }
+
+    public CanvasComplexNumberPlane getCanvas() {
+        return canvas;
+    }
+
+    public ApplicationModel getApplicationModel() {
+        return applicationModel;
+    }
+
+    public Rectangle getRectangleBounds() {
+        return rectangleBounds;
+    }
+
+    public Dimension getDimensionSize() {
+        return dimensionSize;
+    }
+
+    public void setModeSwitch() {
+        this.applicationModel.setModeSwitch();
+    }
+
+    public void setModeZoom() {
+        this.applicationModel.setModeZoom();
     }
 }

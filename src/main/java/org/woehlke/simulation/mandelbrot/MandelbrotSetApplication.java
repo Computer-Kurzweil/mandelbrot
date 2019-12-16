@@ -1,7 +1,7 @@
 package org.woehlke.simulation.mandelbrot;
 
 import org.woehlke.simulation.mandelbrot.config.Config;
-import org.woehlke.simulation.mandelbrot.view.FrameMandelbrotSetApplication;
+import org.woehlke.simulation.mandelbrot.view.FrameApplication;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -14,7 +14,7 @@ public class MandelbrotSetApplication {
 
     private MandelbrotSetApplication() {
         Config config = new Config();
-        FrameMandelbrotSetApplication frame = new FrameMandelbrotSetApplication(config);
+        FrameApplication frame = new FrameApplication(config);
     }
 
     /**

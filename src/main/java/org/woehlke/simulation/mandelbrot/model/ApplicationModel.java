@@ -25,7 +25,7 @@ public class ApplicationModel {
 
     public synchronized boolean click(Point c) {
         boolean repaint=false;
-        ApplicationStatus nextApplicationStatus = MANDELBROT;
+        ApplicationStatus nextApplicationStatus = null;
         switch (applicationStatus){
             case MANDELBROT:
                 nextApplicationStatus = JULIA_SET;
@@ -79,5 +79,37 @@ public class ApplicationModel {
 
     public synchronized void setApplicationStatus(ApplicationStatus applicationStatus) {
         this.applicationStatus = applicationStatus;
+    }
+
+    public void setModeSwitch() {
+        ApplicationStatus nextApplicationStatus = this.applicationStatus;
+        switch (applicationStatus){
+            case MANDELBROT:
+            case JULIA_SET:
+                break;
+            case MANDELBROT_ZOOM:
+                nextApplicationStatus = MANDELBROT;
+                break;
+            case JULIA_SET_ZOOM:
+                nextApplicationStatus = JULIA_SET;
+                break;
+        }
+        this.setApplicationStatus(nextApplicationStatus);
+    }
+
+    public void setModeZoom() {
+        ApplicationStatus nextApplicationStatus = this.applicationStatus;
+        switch (applicationStatus){
+            case MANDELBROT:
+                nextApplicationStatus = MANDELBROT_ZOOM;
+                break;
+            case JULIA_SET:
+                nextApplicationStatus = JULIA_SET_ZOOM;
+                break;
+            case MANDELBROT_ZOOM:
+            case JULIA_SET_ZOOM:
+                break;
+        }
+        this.setApplicationStatus(nextApplicationStatus);
     }
 }

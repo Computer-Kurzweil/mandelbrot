@@ -2,6 +2,7 @@ package org.woehlke.simulation.mandelbrot.control;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.view.CanvasComplexNumberPlane;
+import org.woehlke.simulation.mandelbrot.view.FrameApplication;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -21,10 +22,10 @@ public class ControllerThread extends Thread implements Runnable {
     private final int THREAD_SLEEP_TIME = 10;
     private Boolean goOn;
 
-    public ControllerThread(CanvasComplexNumberPlane canvas) {
+    public ControllerThread(FrameApplication frame) {
         goOn = Boolean.TRUE;
-        this.canvas = canvas;
-        this.applicationModel = canvas.getApp();
+        this.canvas = frame.getCanvas();
+        this.applicationModel =  frame.getApplicationModel();
     }
 
     public void run() {
