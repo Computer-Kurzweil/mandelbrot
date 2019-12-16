@@ -137,7 +137,7 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
     }
 
     public void setModeZoom() {
-        canvas.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
+        canvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     public ApplicationCanvas getCanvas() {
