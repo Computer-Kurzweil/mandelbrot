@@ -45,7 +45,6 @@ public class ApplicationModel {
                 gaussianNumberPlane.computeTheJuliaSetFor(c);
                 break;
             case MANDELBROT_ZOOM:
-                gaussianNumberPlane.start(c);
                 gaussianNumberPlane.zoomIntoTheMandelbrotSet(c);
                 break;
             case JULIA_SET_ZOOM:
