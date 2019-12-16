@@ -29,14 +29,12 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
     private volatile ControllerThread controllerThread;
     private volatile ApplicationCanvas canvas;
     private volatile ApplicationModel applicationModel;
-    private volatile Config config;
     private volatile Rectangle rectangleBounds;
     private volatile Dimension dimensionSize;
 
     public ApplicationFrame(Config config) {
         super(config.getTitle());
-        this.config = config;
-        this.applicationModel = new ApplicationModel(config);
+        this.applicationModel = new ApplicationModel(config,this);
         BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.canvas = new ApplicationCanvas(applicationModel);
         this.controllerThread = new ControllerThread(applicationModel, this.canvas);
@@ -100,10 +98,6 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
     @Override
     public void mouseExited(MouseEvent e) {}
 
-    public Config getConfig() {
-        return config;
-    }
-
     public void showMeInit() {
         pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -129,13 +123,12 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
      * TODO write doc.
      */
     public void showMe() {
-        pack();
+        this.pack();
         this.setBounds(this.rectangleBounds);
         this.setSize(this.dimensionSize);
         this.setPreferredSize(this.dimensionSize);
-        setVisible(true);
-        toFront();
+        this.setVisible(true);
+        this.toFront();
     }
-
 
 }

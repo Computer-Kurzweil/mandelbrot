@@ -69,4 +69,8 @@ public class ApplicationStateMachine {
     public void setApplicationState(ApplicationState applicationState) {
         this.applicationState = applicationState;
     }
+
+    public boolean isModeSwitch() {
+        return (applicationState == JULIA_SET) || (applicationState == MANDELBROT);
+    }
 }
