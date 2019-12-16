@@ -74,9 +74,9 @@ public class GaussianNumberPlane {
         return worldDimensions;
     }
 
-    public void zoomInTheMandelbrotSet(Point zoomPoint) {
+    public void zoomIntoTheMandelbrotSet(Point zoomPoint) {
     }
 
-    public void zoomInTheJuliaSetFor(Point zoomPoint) {
+    public void zoomIntoTheJuliaSetFor(Point zoomPoint) {
     }
 }

@@ -6,8 +6,7 @@ import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
 import org.woehlke.simulation.mandelbrot.model.turing.MandelbrotTuringMachine;
 
-import static org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus.JULIA_SET;
-import static org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus.MANDELBROT;
+import static org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus.*;
 
 public class ApplicationModel {
 
@@ -19,9 +18,9 @@ public class ApplicationModel {
         int width = config.getWidth();
         int height = config.getHeight();
         Point worldDimensions = new Point(width,height);
-        gaussianNumberPlane = new GaussianNumberPlane(worldDimensions);
-        mandelbrotTuringMachine = new MandelbrotTuringMachine(gaussianNumberPlane);
-        applicationStatus = MANDELBROT;
+        this.gaussianNumberPlane = new GaussianNumberPlane(worldDimensions);
+        this.mandelbrotTuringMachine = new MandelbrotTuringMachine(gaussianNumberPlane);
+        this.setApplicationStatus(MANDELBROT);
     }
 
     public synchronized boolean click(Point c) {
@@ -38,13 +37,15 @@ public class ApplicationModel {
                 mandelbrotTuringMachine.computeTheMandelbrotSet();
                 break;
             case MANDELBROT_ZOOM:
-                gaussianNumberPlane.zoomInTheMandelbrotSet(c);
+                nextApplicationStatus = MANDELBROT_ZOOM;
+                gaussianNumberPlane.zoomIntoTheMandelbrotSet(c);
                 break;
             case JULIA_SET_ZOOM:
-                gaussianNumberPlane.zoomInTheJuliaSetFor(c);
+                nextApplicationStatus = JULIA_SET_ZOOM;
+                gaussianNumberPlane.zoomIntoTheJuliaSetFor(c);
                 break;
         }
-        this.applicationStatus = nextApplicationStatus;
+        this.setApplicationStatus(nextApplicationStatus);
         return repaint;
     }
 
