@@ -52,7 +52,7 @@ public class FrameApplication extends JFrame implements ImageObserver,
         rootPane.add(panelButtons);
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
-        showMe();
+        showMeInit();
         this.controllerThread.start();
     }
 
@@ -111,6 +111,7 @@ public class FrameApplication extends JFrame implements ImageObserver,
     }
 
     public void showMeInit() {
+        pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double width = this.rootPane.getWidth();
         double height  = this.canvas.getHeight() + 180;
@@ -122,6 +123,11 @@ public class FrameApplication extends JFrame implements ImageObserver,
         int mystartY = Double.valueOf(startY).intValue();
         this.rectangleBounds = new Rectangle(mystartX, mystartY, mywidth, myheight);
         this.dimensionSize = new Dimension(mywidth, myheight);
+        this.setBounds(this.rectangleBounds);
+        this.setSize(this.dimensionSize);
+        this.setPreferredSize(this.dimensionSize);
+        setVisible(true);
+        toFront();
     }
 
     /**
@@ -129,7 +135,6 @@ public class FrameApplication extends JFrame implements ImageObserver,
      */
     public void showMe() {
         pack();
-        showMeInit();
         this.setBounds(this.rectangleBounds);
         this.setSize(this.dimensionSize);
         this.setPreferredSize(this.dimensionSize);
