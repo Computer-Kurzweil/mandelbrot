@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot;
 
+import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.view.MandelbrotSetFrame;
 
 /**
@@ -9,15 +10,18 @@ import org.woehlke.simulation.mandelbrot.view.MandelbrotSetFrame;
  * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
  * @author Thomas Woehlke
  */
-public class MandelbrotSetDesktop {
+public class MandelbrotSetApplication {
 
-    private MandelbrotSetDesktop() { }
+    private MandelbrotSetApplication() {
+        Config config = new Config();
+        MandelbrotSetFrame mandelbrot = new MandelbrotSetFrame(config);
+    }
 
     /**
-     * Starting the App.
+     * Starting the Application.
      * @param args CLI Parameter
      */
     public static void main(String[] args) {
-        MandelbrotSetFrame mandelbrot = new MandelbrotSetFrame();
+        MandelbrotSetApplication application = new MandelbrotSetApplication();
     }
 }

@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot.view;
 
+import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.Point;
@@ -27,26 +28,25 @@ public class MandelbrotSetFrame extends JFrame implements ImageObserver,
         Accessible,
         WindowListener, MouseListener {
 
-    private final static String title = "Mandelbrot Set";
-    private final static String subtitle = "Mandelbrot Set drawn by a Turing Machine";
-
     private volatile ControllerThread controllerThread;
     private volatile ComplexNumberPlaneCanvas canvas;
     private volatile ApplicationModel applicationModel;
 
-    public MandelbrotSetFrame() {
-        super(title);
+    public MandelbrotSetFrame(Config config) {
+        super(config.getTitle());
         BorderLayout layout = new BorderLayout();
-        int width = 640;
-        int height = 468;
-        JLabel subtitleLabel = new JLabel(subtitle);
+        int width = config.getWidth();
+        int height = config.getHeight();
+        PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
+        PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
         Point worldDimensions = new Point(width,height);
         this.applicationModel = new ApplicationModel(worldDimensions);
         this.canvas = new ComplexNumberPlaneCanvas(applicationModel);
         this.controllerThread = new ControllerThread(canvas);
         this.setLayout(layout);
-        this.add(subtitleLabel, BorderLayout.NORTH);
+        this.add(panelSubtitle, BorderLayout.NORTH);
         this.add(canvas, BorderLayout.CENTER);
+        this.add(panelCopyright, BorderLayout.SOUTH);
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
         pack();

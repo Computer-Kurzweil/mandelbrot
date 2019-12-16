@@ -21,5 +21,5 @@ dependencies {
 }
 
 application {
-    mainClassName = 'org.woehlke.simulation.mandelbrot.MandelbrotSetDesktop'
+    mainClassName = 'org.woehlke.simulation.mandelbrot.MandelbrotSetApplication'
 }

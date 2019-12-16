@@ -1,6 +1,6 @@
 package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.cyclic.cellular.automaton.config.ObjectRegistry;
+import org.woehlke.simulation.mandelbrot.config.Config;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,10 +16,10 @@ public class PanelButtons extends JPanel implements ActionListener {
   private final JButton buttonVonNeumann;
   private final JButton buttonMoore;
   private final JButton buttonWoehlke;
-  private ObjectRegistry ctx;
+  private Config config;
 
-  public PanelButtons(ObjectRegistry ctx) {
-    this.ctx = ctx;
+  public PanelButtons(Config config) {
+    this.config = config;
     JLabel neighborhood = new JLabel("Neighborhood");
     this.buttonVonNeumann = new JButton("Von Neumann");
     this.buttonMoore = new JButton("Moore");
@@ -40,12 +40,13 @@ public class PanelButtons extends JPanel implements ActionListener {
    */
   @Override
   public void actionPerformed(ActionEvent ae) {
+      /*
     if (ae.getSource() == this.buttonVonNeumann) {
         this.ctx.getController().pushButtonVonNeumann();
     } else if (ae.getSource() == this.buttonMoore) {
         this.ctx.getController().pushButtonMoore();
     } else if (ae.getSource() == this.buttonWoehlke) {
         this.ctx.getController().pushButtonWoehlke();
-    }
+    }*/
   }
 }
