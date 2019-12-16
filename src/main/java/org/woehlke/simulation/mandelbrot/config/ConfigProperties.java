@@ -2,6 +2,15 @@ package org.woehlke.simulation.mandelbrot.config;
 
 import static java.io.File.separator;
 
+/**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
+ * (C) 2006 - 2015 Thomas Woehlke.
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
+ * @author Thomas Woehlke
+ *
+ * Created by tw on 16.12.2019.
+ */
 public interface ConfigProperties {
 
     String TITLE = "Mandelbrot Set";

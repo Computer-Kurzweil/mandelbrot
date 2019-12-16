@@ -37,7 +37,7 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         this.applicationModel = new ApplicationModel(config,this);
         BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.canvas = new ApplicationCanvas(applicationModel);
-        this.controllerThread = new ControllerThread(applicationModel, this.canvas);
+        this.controllerThread = new ControllerThread(applicationModel, this);
         PanelButtons panelButtons = new PanelButtons(this.applicationModel);
         PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
         PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
@@ -138,5 +138,9 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
 
     public void setModeZoom() {
         canvas.setCursor(new Cursor(Cursor.SE_RESIZE_CURSOR));
+    }
+
+    public ApplicationCanvas getCanvas() {
+        return canvas;
     }
 }

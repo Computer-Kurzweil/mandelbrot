@@ -3,6 +3,15 @@ package org.woehlke.simulation.mandelbrot.model.state;
 import static org.woehlke.simulation.mandelbrot.model.state.ApplicationState.*;
 import static org.woehlke.simulation.mandelbrot.model.state.ApplicationState.JULIA_SET_ZOOM;
 
+/**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
+ * (C) 2006 - 2015 Thomas Woehlke.
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
+ * @author Thomas Woehlke
+ *
+ * Created by tw on 16.12.2019.
+ */
 public class ApplicationStateMachine {
 
     private volatile ApplicationState applicationState;

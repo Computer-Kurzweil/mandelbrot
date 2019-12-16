@@ -3,6 +3,15 @@ package org.woehlke.simulation.mandelbrot.model.fractal;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
 
+/**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
+ * (C) 2006 - 2015 Thomas Woehlke.
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
+ * @author Thomas Woehlke
+ *
+ * Created by tw on 16.12.2019.
+ */
 public class GaussianNumberPlane {
 
     private volatile int[][] lattice;

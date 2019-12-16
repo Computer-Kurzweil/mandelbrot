@@ -2,6 +2,7 @@ package org.woehlke.simulation.mandelbrot.control;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.view.ApplicationCanvas;
+import org.woehlke.simulation.mandelbrot.view.ApplicationFrame;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -16,15 +17,15 @@ import org.woehlke.simulation.mandelbrot.view.ApplicationCanvas;
 public class ControllerThread extends Thread implements Runnable {
 
     private volatile ApplicationModel applicationModel;
-    private volatile ApplicationCanvas canvas;
+    private volatile ApplicationFrame frame;
 
     private final int THREAD_SLEEP_TIME = 1;
 
     private volatile Boolean goOn;
 
-    public ControllerThread(ApplicationModel model, ApplicationCanvas canvas) {
-        this.canvas = canvas;
-        this.applicationModel =  model;
+    public ControllerThread(ApplicationModel model, ApplicationFrame frame) {
+        this.frame = frame;
+        this.applicationModel = model;
         goOn = Boolean.TRUE;
     }
 
@@ -35,7 +36,7 @@ public class ControllerThread extends Thread implements Runnable {
                 doIt = goOn.booleanValue();
             }
             if(this.applicationModel.step()){
-                canvas.repaint();
+                frame.getCanvas().repaint();
             }
             try { sleep(THREAD_SLEEP_TIME); }
             catch (InterruptedException e) { }
