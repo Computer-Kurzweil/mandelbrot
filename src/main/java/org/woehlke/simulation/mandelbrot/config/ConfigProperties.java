@@ -21,8 +21,8 @@ public interface ConfigProperties {
 
     String BUTTONS_LABEL = "Choose Mode";
     String BUTTONS_SWITCH = "Mandelbrot Set <-> Julia Set";
-    String BUTTONS_ZOOM = "Zoom In";
-    String BUTTONS_SETMODE = "Set Mode";
+    String BUTTONS_ZOOM = "Zoom";
+    String BUTTONS_ZOOMOUT = "Zoom out";
 
     String APP_PROPERTIES_FILENAME ="src" + separator
         +"main" + separator + "resources" + separator  + "application.properties";
@@ -38,5 +38,5 @@ public interface ConfigProperties {
     String KEY_BUTTONS_LABEL = KEY + "buttons.label";
     String KEY_BUTTONS_SWITCH = KEY + "buttons.switch";
     String KEY_BUTTONS_ZOOM = KEY + "buttons.zoom";
-    String KEY_BUTTONS_SETMODE = KEY + "buttons.setmode";
+    String KEY_BUTTONS_ZOOMOUT = KEY + "buttons.zoomout";
 }

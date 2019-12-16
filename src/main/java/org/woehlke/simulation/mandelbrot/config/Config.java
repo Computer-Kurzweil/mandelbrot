@@ -26,7 +26,7 @@ public class Config implements ConfigProperties {
     private String buttonsLabel;
     private String buttonsSwitch;
     private String buttonsZoom;
-    private String buttonsSetMode;
+    private String buttonsZoomOut;
 
     public Config() {
         String appPropertiesFile = (APP_PROPERTIES_FILENAME);
@@ -49,7 +49,7 @@ public class Config implements ConfigProperties {
             buttonsLabel = prop.getProperty(KEY_BUTTONS_LABEL,BUTTONS_LABEL);
             buttonsSwitch = prop.getProperty(KEY_BUTTONS_SWITCH,BUTTONS_SWITCH);
             buttonsZoom = prop.getProperty(KEY_BUTTONS_ZOOM,BUTTONS_ZOOM);
-            buttonsSetMode = prop.getProperty(KEY_BUTTONS_SETMODE,BUTTONS_SETMODE);
+            buttonsZoomOut = prop.getProperty(KEY_BUTTONS_ZOOMOUT,BUTTONS_ZOOMOUT);
         } catch (IOException ex) {
             System.out.println(ex.getLocalizedMessage());
         }
@@ -87,8 +87,8 @@ public class Config implements ConfigProperties {
         return buttonsZoom;
     }
 
-    public String getButtonsSetMode() {
-        return buttonsSetMode;
+    public String getButtonsZoomOut() {
+        return buttonsZoomOut;
     }
 
     @Override
@@ -104,12 +104,12 @@ public class Config implements ConfigProperties {
             Objects.equals(getButtonsLabel(), config.getButtonsLabel()) &&
             Objects.equals(getButtonsSwitch(), config.getButtonsSwitch()) &&
             Objects.equals(getButtonsZoom(), config.getButtonsZoom()) &&
-            Objects.equals(getButtonsSetMode(), config.getButtonsSetMode());
+            Objects.equals(getButtonsZoomOut(), config.getButtonsZoomOut());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getSubtitle(), getCopyright(), getWidth(), getHeight(), getButtonsLabel(), getButtonsSwitch(), getButtonsZoom(), getButtonsSetMode());
+        return Objects.hash(getTitle(), getSubtitle(), getCopyright(), getWidth(), getHeight(), getButtonsLabel(), getButtonsSwitch(), getButtonsZoom(), getButtonsZoomOut());
     }
 
     @Override
@@ -123,7 +123,7 @@ public class Config implements ConfigProperties {
             ", buttonsLabel='" + buttonsLabel + '\'' +
             ", buttonsSwitch='" + buttonsSwitch + '\'' +
             ", buttonsZoom='" + buttonsZoom + '\'' +
-            ", buttonsSetMode='" + buttonsSetMode + '\'' +
+            ", buttonsZoomOut='" + buttonsZoomOut + '\'' +
             '}';
     }
 }

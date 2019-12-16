@@ -24,6 +24,7 @@ public class PanelButtons extends JPanel implements ActionListener {
 
     private volatile JRadioButton radioButtonsSwitch;
     private volatile JRadioButton radioButtonsZoom;
+    private volatile JButton zoomOut;
     private volatile ButtonGroup radioButtonsGroup;
     private volatile ApplicationModel model;
 
@@ -38,6 +39,7 @@ public class PanelButtons extends JPanel implements ActionListener {
         this.radioButtonsZoom.setMnemonic(RADIO_BUTTONS_ZOOM.ordinal());
         this.radioButtonsZoom.addActionListener(this);
         this.radioButtonsGroup = new ButtonGroup();
+        this.zoomOut = new JButton(model.getConfig().getButtonsZoomOut());
         this.radioButtonsGroup.add(radioButtonsSwitch);
         this.radioButtonsGroup.add(radioButtonsZoom);
         FlowLayout layout = new FlowLayout();
