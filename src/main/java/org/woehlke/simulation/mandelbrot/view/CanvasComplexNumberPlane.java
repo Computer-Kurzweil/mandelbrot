@@ -27,10 +27,12 @@ public class CanvasComplexNumberPlane extends JComponent {
         int width = this.app.getWorldDimensions().getWidth();
         int height = this.app.getWorldDimensions().getHeight();
         this.preferredSize = new Dimension(width, height);
+        this.setSize(this.preferredSize);
         this.setPreferredSize(preferredSize);
     }
 
     public void paint(Graphics g) {
+        this.setSize(this.preferredSize);
         this.setPreferredSize(preferredSize);
         super.paintComponent(g);
         int red = 0;

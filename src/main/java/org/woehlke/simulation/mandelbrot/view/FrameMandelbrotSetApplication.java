@@ -38,10 +38,9 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
     public FrameMandelbrotSetApplication(Config config) {
         super(config.getTitle());
         this.config = config;
-        BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.applicationModel = new ApplicationModel(config);
+        BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.canvas = new CanvasComplexNumberPlane(applicationModel);
-        this.controllerThread = new ControllerThread(canvas);
         this.panelButtons = new PanelButtons(this);
         this.panelSubtitle = new PanelSubtitle(config.getSubtitle());
         this.panelCopyright = new PanelCopyright(config.getCopyright());
@@ -54,9 +53,8 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
         rootPane.add(panelButtons);
         addWindowListener(this);
         this.canvas.addMouseListener(   this);
-        pack();
-        setVisible(true);
-        toFront();
+        showMe();
+        this.controllerThread = new ControllerThread(canvas);
         this.controllerThread.start();
     }
 
@@ -120,20 +118,20 @@ public class FrameMandelbrotSetApplication extends JFrame implements ImageObserv
     public void showMe() {
         pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double height = this.applicationModel.getWorldDimensions().getHeight();
-        double width = this.applicationModel.getWorldDimensions().getWidth();
-        height += this.panelSubtitle.getHeight()
-            + this.panelCopyright.getHeight()
-            + this.separator.getHeight()
-            + this.panelButtons.getHeight();
+        double width = this.rootPane.getWidth();
+        double height  = this.canvas.getHeight() + 180;
         double startX = (screenSize.getWidth() - width) / 2d;
         double startY = (screenSize.getHeight() - height) / 2d;
         int myheight = Double.valueOf(height).intValue();
         int mywidth = Double.valueOf(width).intValue();
         int mystartX = Double.valueOf(startX).intValue();
         int mystartY = Double.valueOf(startY).intValue();
-        this.setBounds(mystartX, mystartY, mywidth, myheight);
-        rootPane.setVisible(true);
+        Rectangle rectangle = new Rectangle(mystartX, mystartY, mywidth, myheight);
+        Dimension dimension = new Dimension(mywidth, myheight);
+        this.setBounds(rectangle);
+        this.setSize(dimension);
+        this.setPreferredSize(dimension);
+        setVisible(true);
         toFront();
     }
 }
