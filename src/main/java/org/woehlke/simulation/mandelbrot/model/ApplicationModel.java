@@ -93,8 +93,25 @@ public class ApplicationModel {
         return gaussianNumberPlane;
     }
 
+    public ApplicationFrame getFrame() {
+        return frame;
+    }
+
     public Config getConfig() {
         return config;
     }
 
+    public void zoomOut() {
+        switch (applicationStateMachine.getApplicationState()) {
+            case MANDELBROT:
+            case JULIA_SET:
+                break;
+            case MANDELBROT_ZOOM:
+                gaussianNumberPlane.zoomOutOfTheMandelbrotSet();
+                break;
+            case JULIA_SET_ZOOM:
+                gaussianNumberPlane.zoomOutOfTheJuliaSet();
+                break;
+        }
+    }
 }

@@ -39,14 +39,16 @@ public class PanelButtons extends JPanel implements ActionListener {
         this.radioButtonsZoom.setMnemonic(RADIO_BUTTONS_ZOOM.ordinal());
         this.radioButtonsZoom.addActionListener(this);
         this.radioButtonsGroup = new ButtonGroup();
-        this.zoomOut = new JButton(model.getConfig().getButtonsZoomOut());
         this.radioButtonsGroup.add(radioButtonsSwitch);
         this.radioButtonsGroup.add(radioButtonsZoom);
+        this.zoomOut = new JButton(model.getConfig().getButtonsZoomOut());
+        this.zoomOut.addActionListener(this);
         FlowLayout layout = new FlowLayout();
         this.setLayout(layout);
         this.add(buttonsLabel);
         this.add(radioButtonsSwitch);
         this.add(radioButtonsZoom);
+        this.add(zoomOut);
     }
 
     /**
@@ -58,6 +60,9 @@ public class PanelButtons extends JPanel implements ActionListener {
             this.model.setModeSwitch();
         } else if(ae.getSource() == this.radioButtonsZoom) {
             this.model.setModeZoom();
+        } else if(ae.getSource() == this.zoomOut){
+            this.model.zoomOut();
+            this.model.getFrame().getCanvas().repaint();
         }
     }
 }
