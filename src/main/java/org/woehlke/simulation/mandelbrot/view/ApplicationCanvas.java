@@ -51,7 +51,4 @@ public class ApplicationCanvas extends JComponent {
         paint(g);
     }
 
-    public ApplicationModel getApp() {
-        return app;
-    }
 }

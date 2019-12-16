@@ -4,7 +4,6 @@ import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
-import org.woehlke.simulation.mandelbrot.model.state.ApplicationState;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -41,7 +40,7 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
         this.canvas = new ApplicationCanvas(applicationModel);
         this.controllerThread = new ControllerThread(applicationModel, this.canvas);
-        PanelButtons panelButtons = new PanelButtons(this);
+        PanelButtons panelButtons = new PanelButtons(this.applicationModel);
         PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
         PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
         JSeparator separator = new JSeparator();
@@ -63,12 +62,10 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
 
     public void windowClosing(WindowEvent e) {
         this.controllerThread.exit();
-        System.exit(0);
     }
 
     public void windowClosed(WindowEvent e) {
         this.controllerThread.exit();
-        System.exit(0);
     }
 
     public void windowIconified(WindowEvent e) {}
@@ -123,6 +120,7 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         this.setBounds(this.rectangleBounds);
         this.setSize(this.dimensionSize);
         this.setPreferredSize(this.dimensionSize);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         toFront();
     }
@@ -139,23 +137,5 @@ public class ApplicationFrame extends JFrame implements ImageObserver,
         toFront();
     }
 
-    public ControllerThread getControllerThread() {
-        return controllerThread;
-    }
 
-    public ApplicationCanvas getCanvas() {
-        return canvas;
-    }
-
-    public ApplicationModel getApplicationModel() {
-        return applicationModel;
-    }
-
-    public void setModeSwitch() {
-        this.applicationModel.setModeSwitch();
-    }
-
-    public void setModeZoom() {
-        this.applicationModel.setModeZoom();
-    }
 }

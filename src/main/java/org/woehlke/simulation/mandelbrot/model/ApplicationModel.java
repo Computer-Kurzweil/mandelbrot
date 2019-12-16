@@ -12,12 +12,10 @@ public class ApplicationModel {
     private volatile MandelbrotTuringMachine mandelbrotTuringMachine;
     private volatile ApplicationStateMachine applicationStateMachine;
 
-    private volatile Point worldDimensions;
+    private volatile Config config;
 
     public ApplicationModel(Config config) {
-        int width = config.getWidth();
-        int height = config.getHeight();
-        this.worldDimensions = new Point(width,height);
+        this.config = config;
         this.gaussianNumberPlane = new GaussianNumberPlane(this);
         this.mandelbrotTuringMachine = new MandelbrotTuringMachine(this);
         this.applicationStateMachine = new ApplicationStateMachine();
@@ -63,7 +61,9 @@ public class ApplicationModel {
     }
 
     public Point getWorldDimensions() {
-        return worldDimensions;
+        int width = config.getWidth();
+        int height = config.getHeight();
+        return new Point(width,height);
     }
 
     public GaussianNumberPlane getGaussianNumberPlane() {
@@ -76,5 +76,9 @@ public class ApplicationModel {
 
     public void setModeZoom() {
         this.applicationStateMachine.setModeZoom();
+    }
+
+    public Config getConfig() {
+        return config;
     }
 }

@@ -1,5 +1,7 @@
 package org.woehlke.simulation.mandelbrot.view;
 
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,16 +19,16 @@ public class PanelButtons extends JPanel implements ActionListener {
     private volatile JRadioButton radioButtonsSwitch;
     private volatile JRadioButton radioButtonsZoom;
     private volatile ButtonGroup radioButtonsGroup;
-    private volatile ApplicationFrame frame;
+    private volatile ApplicationModel model;
 
-    public PanelButtons(ApplicationFrame frame) {
-        this.frame = frame;
-        JLabel buttonsLabel = new JLabel(frame.getConfig().getButtonsLabel());
-        this.radioButtonsSwitch = new JRadioButton(frame.getConfig().getButtonsSwitch());
+    public PanelButtons(ApplicationModel model) {
+        this.model = model;
+        JLabel buttonsLabel = new JLabel(model.getConfig().getButtonsLabel());
+        this.radioButtonsSwitch = new JRadioButton(model.getConfig().getButtonsSwitch());
         this.radioButtonsSwitch.setMnemonic(RADIO_BUTTONS_SWITCH.ordinal());
         this.radioButtonsSwitch.setSelected(true);
         this.radioButtonsSwitch.addActionListener(this);
-        this.radioButtonsZoom = new JRadioButton(frame.getConfig().getButtonsZoom());
+        this.radioButtonsZoom = new JRadioButton(model.getConfig().getButtonsZoom());
         this.radioButtonsZoom.setMnemonic(RADIO_BUTTONS_ZOOM.ordinal());
         this.radioButtonsZoom.addActionListener(this);
         this.radioButtonsGroup = new ButtonGroup();
@@ -45,9 +47,9 @@ public class PanelButtons extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.radioButtonsSwitch) {
-            this.frame.setModeSwitch();
+            this.model.setModeSwitch();
         } else if(ae.getSource() == this.radioButtonsZoom) {
-            this.frame.setModeZoom();
+            this.model.setModeZoom();
         }
     }
 }

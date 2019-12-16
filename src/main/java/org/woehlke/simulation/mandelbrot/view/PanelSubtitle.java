@@ -8,13 +8,9 @@ import java.awt.*;
  */
 public class PanelSubtitle extends JPanel {
 
-  private final JLabel subtitleLabel;
-
   public PanelSubtitle(String subtitle) {
-    this.subtitleLabel = new JLabel(subtitle);
-    FlowLayout layout = new FlowLayout();
-    this.setLayout(layout);
-    this.add(subtitleLabel);
+      this.setLayout(new FlowLayout());
+      this.add(new JLabel(subtitle));
   }
 
 }
