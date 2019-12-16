@@ -5,7 +5,7 @@ import org.woehlke.simulation.mandelbrot.model.helper.Point;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -44,7 +44,7 @@ public class GaussianNumberPlane {
     private volatile ComplexNumber zoomCenter;
 
 
-    public static Logger log = Logger.getLogger(GaussianNumberPlane.class.getName());
+    //public static Logger log = Logger.getLogger(GaussianNumberPlane.class.getName());
 
     public GaussianNumberPlane(ApplicationModel model) {
         this.worldDimensions = model.getWorldDimensions();
@@ -159,7 +159,7 @@ public class GaussianNumberPlane {
     }
 
     public void zoomIntoTheMandelbrotSet(Point zoomPoint) {
-        log.info("zoomIntoTheMandelbrotSet: "+ zoomPoint +" - old:  "+this.getZoomCenter());
+        //log.info("zoomIntoTheMandelbrotSet: "+ zoomPoint +" - old:  "+this.getZoomCenter());
         this.inceaseZoomLevel();
         if(this.getZoomLevel() == 2){
             ComplexNumber complexCenter = new ComplexNumber(this.complexCenterForMandelbrot);
@@ -169,8 +169,8 @@ public class GaussianNumberPlane {
             this.setZoomCenter(getComplexNumberFromLatticeCoordsForZoomedMandelbrot(zoomPoint));
         }
         complexCenterForZoomedMandelbrot.push(this.getZoomCenter());
-        log.info("zoomPoint:     "+ zoomPoint);
-        log.info("zoomCenterNew: " + this.getZoomCenter() + " - zoomLevel:  "+ this.getZoomLevel());
+        //log.info("zoomPoint:     "+ zoomPoint);
+        //log.info("zoomCenterNew: " + this.getZoomCenter() + " - zoomLevel:  "+ this.getZoomLevel());
         for(int y = 0; y < worldDimensions.getY(); y++){
             for(int x = 0; x < worldDimensions.getX(); x++){
                 Point p = new Point(x, y);
@@ -180,12 +180,12 @@ public class GaussianNumberPlane {
     }
 
     public void zoomOutOfTheMandelbrotSet() {
-        log.info("zoomOutOfTheMandelbrotSet: " + this.getZoomCenter());
-        if(this.getZoomLevel()>2){
+        //log.info("zoomOutOfTheMandelbrotSet: " + this.getZoomCenter());
+        if(this.getZoomLevel()>1){
             this.deceaseZoomLevel();
             this.setZoomCenter(complexCenterForZoomedMandelbrot.pop());
         }
-        log.info("zoomCenter: " + this.getZoomCenter() + " - zoomLevel:  "+ this.getZoomLevel());
+        //log.info("zoomCenter: " + this.getZoomCenter() + " - zoomLevel:  "+ this.getZoomLevel());
         for(int y = 0; y < worldDimensions.getY(); y++){
             for(int x = 0; x < worldDimensions.getX(); x++){
                 Point p = new Point(x, y);
