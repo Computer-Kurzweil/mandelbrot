@@ -1,6 +1,8 @@
 package org.woehlke.simulation.mandelbrot.model.fractal;
 
 
+import org.woehlke.simulation.mandelbrot.model.helper.Point;
+
 import java.util.Objects;
 
 /**
@@ -35,8 +37,8 @@ public class ComplexNumber {
     }
 
     public ComplexNumber(double real, double img) {
-        this.img = img;
         this.real = real;
+        this.img = img;
         iterations=0;
     }
 

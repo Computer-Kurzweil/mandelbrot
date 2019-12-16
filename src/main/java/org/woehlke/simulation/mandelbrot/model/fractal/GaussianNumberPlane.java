@@ -86,15 +86,20 @@ public class GaussianNumberPlane {
         //System.out.print(";");
     }
 
-    public synchronized void computeTheJuliaSetFor(Point pointFromMandelbrotSet) {
-        this.complexNumberForJuliaSetC = getComplexNumberFromLatticeCoordsForMandelbrot(pointFromMandelbrotSet);
+    private synchronized void computeTheJuliaSetForC(ComplexNumber c) {
         for(int y = 0; y < worldDimensions.getY(); y++) {
             for (int x = 0; x < worldDimensions.getX(); x++) {
                 Point zPoint = new Point(x, y);
                 ComplexNumber z = this.getComplexNumberFromLatticeCoordsForJulia(zPoint);
-                lattice[x][y] = z.computeJuliaSet(this.complexNumberForJuliaSetC);
+                lattice[x][y] = z.computeJuliaSet(c);
             }
         }
+    }
+
+    public synchronized void computeTheJuliaSetFor(Point pointFromMandelbrotSet) {
+        ComplexNumber c = getComplexNumberFromLatticeCoordsForMandelbrot(pointFromMandelbrotSet);
+        this.complexNumberForJuliaSetC = c;
+        computeTheJuliaSetForC(c);
     }
 
     public synchronized Point getWorldDimensions() {
@@ -102,8 +107,17 @@ public class GaussianNumberPlane {
     }
 
     public void zoomIntoTheMandelbrotSet(Point zoomPoint) {
+        for(int y=0;y<worldDimensions.getY();y++){
+            for(int x=0;x<worldDimensions.getX();x++){
+                if(lattice[x][y] == YET_UNCOMPUTED){
+                    this.isInMandelbrotSet(new Point(x, y));
+                }
+            }
+        }
     }
 
     public void zoomIntoTheJuliaSetFor(Point zoomPoint) {
+        ComplexNumber c = this.complexNumberForJuliaSetC;
+        computeTheJuliaSetForC(c);
     }
 }

@@ -38,7 +38,8 @@ public class ApplicationModel {
                 break;
             case MANDELBROT_ZOOM:
                 nextApplicationStatus = MANDELBROT_ZOOM;
-                gaussianNumberPlane.zoomIntoTheMandelbrotSet(c);
+                mandelbrotTuringMachine.computeTheMandelbrotSet();
+                //gaussianNumberPlane.zoomIntoTheMandelbrotSet(c);
                 break;
             case JULIA_SET_ZOOM:
                 nextApplicationStatus = JULIA_SET_ZOOM;
