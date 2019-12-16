@@ -14,7 +14,6 @@ import static org.woehlke.simulation.mandelbrot.view.RradioButtons.RADIO_BUTTONS
  */
 public class PanelButtons extends JPanel implements ActionListener {
 
-    private volatile JButton buttonSetMode;
     private volatile JRadioButton radioButtonsSwitch;
     private volatile JRadioButton radioButtonsZoom;
     private volatile ButtonGroup radioButtonsGroup;
@@ -26,19 +25,18 @@ public class PanelButtons extends JPanel implements ActionListener {
         this.radioButtonsSwitch = new JRadioButton(frame.getConfig().getButtonsSwitch());
         this.radioButtonsSwitch.setMnemonic(RADIO_BUTTONS_SWITCH.ordinal());
         this.radioButtonsSwitch.setSelected(true);
+        this.radioButtonsSwitch.addActionListener(this);
         this.radioButtonsZoom = new JRadioButton(frame.getConfig().getButtonsZoom());
         this.radioButtonsZoom.setMnemonic(RADIO_BUTTONS_ZOOM.ordinal());
+        this.radioButtonsZoom.addActionListener(this);
         this.radioButtonsGroup = new ButtonGroup();
         this.radioButtonsGroup.add(radioButtonsSwitch);
         this.radioButtonsGroup.add(radioButtonsZoom);
-        this.buttonSetMode = new JButton(frame.getConfig().getButtonsSetMode());
         FlowLayout layout = new FlowLayout();
         this.setLayout(layout);
         this.add(buttonsLabel);
         this.add(radioButtonsSwitch);
         this.add(radioButtonsZoom);
-        this.add(this.buttonSetMode);
-        this.buttonSetMode.addActionListener(this);
     }
 
     /**
@@ -46,13 +44,10 @@ public class PanelButtons extends JPanel implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if (ae.getSource() == this.buttonSetMode) {
-            final int selectedMnemonic = this.radioButtonsGroup.getSelection().getMnemonic();
-            if (radioButtonsSwitch.getMnemonic() == selectedMnemonic){
-                this.frame.setModeSwitch();
-            } else if (radioButtonsZoom.getMnemonic() == selectedMnemonic) {
-                this.frame.setModeZoom();
-            }
+        if (ae.getSource() == this.radioButtonsSwitch) {
+            this.frame.setModeSwitch();
+        } else if(ae.getSource() == this.radioButtonsZoom) {
+            this.frame.setModeZoom();
         }
     }
 }
