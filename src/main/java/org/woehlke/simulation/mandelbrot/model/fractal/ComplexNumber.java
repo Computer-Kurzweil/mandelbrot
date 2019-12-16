@@ -16,13 +16,7 @@ public class ComplexNumber {
     private volatile double real;
     private volatile double img;
 
-    private volatile double realZ=0.0d;
-    private volatile double imgZ=0.0d;
-
-    private volatile int iterations;
-
     public final static int MAX_ITERATIONS = 32;
-    public final static int MAX_ITERATIONS_JULIA = 31;
     private final static double DIVERGENCE_THRESHOLD = 4.0d;
 
     public double getReal() {
@@ -33,50 +27,82 @@ public class ComplexNumber {
         return img;
     }
 
+    public ComplexNumber() {
+        this.real = 0.0d;
+        this.img = 0.0d;
+        this.iterations=0;
+        this.inMandelbrotSet=false;
+        this.inJuliaSet=false;
+    }
+
+    public ComplexNumber(ComplexNumber complexNumber) {
+        this.real = complexNumber.real;
+        this.img = complexNumber.img;
+        this.iterations=complexNumber.iterations;
+        this.inMandelbrotSet=complexNumber.inMandelbrotSet;
+        this.inJuliaSet=complexNumber.inJuliaSet;
+    }
+
     public ComplexNumber(double real, double img) {
         this.real = real;
         this.img = img;
-        iterations=0;
+        this.iterations=0;
+        this.inMandelbrotSet=false;
+        this.inJuliaSet=false;
     }
 
+    public ComplexNumber plus(ComplexNumber complexNumber){
+        double newRealZ = this.real + complexNumber.real;
+        double newImgZ = this.img + complexNumber.img;
+        return new ComplexNumber(newRealZ,newImgZ);
+    }
+
+    public ComplexNumber square(){
+        double realZ=real;
+        double imgZ=img;
+        double newRealZ=realZ*realZ-imgZ*imgZ;
+        double newImgZ=2*realZ*imgZ;
+        return new ComplexNumber(newRealZ,newImgZ);
+    }
+
+    private volatile int iterations;
+    private volatile boolean inMandelbrotSet;
+    private volatile boolean inJuliaSet;
+
     public synchronized int computeMandelbrotSet() {
-        iterations=0;
-        realZ=0.0f;
-        imgZ=0.0f;
-        double newRealZ;
-        double newImgZ;
+        int iterationsTmp = 0;
+        ComplexNumber z = new ComplexNumber();
         do {
-            newRealZ=realZ*realZ-imgZ*imgZ + real;
-            newImgZ=2*realZ*imgZ + img;
-            realZ=newRealZ;
-            imgZ=newImgZ;
-            iterations++;
-        } while ((iterations < MAX_ITERATIONS) && isNotDivergent());
-        return iterations;
+            iterationsTmp++;
+            z = z.square().plus(this);
+        } while (z.isNotDivergent() && (iterationsTmp < MAX_ITERATIONS));
+        this.inMandelbrotSet = z.isNotDivergent();
+        this.iterations = this.inMandelbrotSet?0:iterationsTmp;
+        return this.iterations;
     }
 
     public synchronized int computeJuliaSet(ComplexNumber c) {
-        iterations=0;
-        realZ = real;
-        imgZ = img;
-        double newRealZ;
-        double newImgZ;
+        int iterationsTmp = 0;
+        ComplexNumber z = new ComplexNumber(this);
         do {
-            newRealZ=realZ*realZ-imgZ*imgZ + c.getReal();
-            newImgZ=2*realZ*imgZ + c.getImg();
-            realZ=newRealZ;
-            imgZ=newImgZ;
-            iterations++;
-        } while (iterations < MAX_ITERATIONS_JULIA && isNotDivergent());
-        return iterations;
+            iterationsTmp++;
+            z = z.square().plus(c);
+        } while (z.isNotDivergent() && (iterationsTmp < MAX_ITERATIONS));
+        this.inJuliaSet = z.isNotDivergent();
+        this.iterations = this.inJuliaSet?0:iterationsTmp;
+        return this.iterations;
     }
 
     public synchronized boolean isInMandelbrotSet() {
-        return (iterations == MAX_ITERATIONS);
+        return inMandelbrotSet;
+    }
+
+    public synchronized boolean isInJuliaSet() {
+        return inJuliaSet;
     }
 
     public synchronized boolean isNotDivergent(){
-        return (( realZ*realZ + imgZ*imgZ ) < DIVERGENCE_THRESHOLD);
+        return (( real*real + img*img ) < DIVERGENCE_THRESHOLD);
     }
 
     @Override
@@ -86,14 +112,14 @@ public class ComplexNumber {
         ComplexNumber that = (ComplexNumber) o;
         return Double.compare(that.getReal(), getReal()) == 0 &&
             Double.compare(that.getImg(), getImg()) == 0 &&
-            Double.compare(that.realZ, realZ) == 0 &&
-            Double.compare(that.imgZ, imgZ) == 0 &&
-            iterations == that.iterations;
+            iterations == that.iterations &&
+            isInMandelbrotSet() == that.isInMandelbrotSet() &&
+            isInJuliaSet() == that.isInJuliaSet();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getReal(), getImg(), realZ, imgZ, iterations);
+        return Objects.hash(getReal(), getImg(), iterations, isInMandelbrotSet(), isInJuliaSet());
     }
 
     @Override
@@ -101,11 +127,9 @@ public class ComplexNumber {
         return "ComplexNumber{" +
             "real=" + real +
             ", img=" + img +
-            ", realZ=" + realZ +
-            ", imgZ=" + imgZ +
             ", iterations=" + iterations +
+            ", inMandelbrotSet=" + inMandelbrotSet +
+            ", inJuliaSet=" + inJuliaSet +
             '}';
     }
-
-
 }

@@ -93,24 +93,11 @@ public class GaussianNumberPlane {
 
     private synchronized ComplexNumber getComplexNumberFromLatticeCoordsForZoomedMandelbrot(Point turingPosition) {
         double realX = zoomCenter.getReal()
-            + (complexWorldDimensions.getReal()*turingPosition.getX())/(worldDimensions.getX()*zoomLevel);
+            + (complexWorldDimensions.getReal()*turingPosition.getX())/(worldDimensions.getX());
         double imgY = zoomCenter.getImg()
-            + (complexWorldDimensions.getImg()*turingPosition.getY())/(worldDimensions.getY()*zoomLevel);
+            + (complexWorldDimensions.getImg()*turingPosition.getY())/(worldDimensions.getY());
         return new ComplexNumber(realX,imgY);
     }
-
-    /*
-    private synchronized boolean isInZooomedMandelbrotSet(Point pixelPoint, ComplexNumber zoomCenter) {
-        ComplexNumber position = this.getComplexNumberFromLatticeCoordsForZoomedMandelbrot(pixelPoint, zoomCenter);
-        lattice[pixelPoint.getX()][pixelPoint.getY()] = position.computeMandelbrotSet();
-        boolean isInZooomedMandelbrotSet = position.isInMandelbrotSet();
-        if(isInZooomedMandelbrotSet){
-            lattice[pixelPoint.getX()][pixelPoint.getY()]=0;
-        }
-        return isInZooomedMandelbrotSet;
-    }
-    */
-
 
     public synchronized boolean isInZooomedMandelbrotSet(Point turingPosition) {
         ComplexNumber position = this.getComplexNumberFromLatticeCoordsForZoomedMandelbrot(turingPosition);
@@ -158,14 +145,17 @@ public class GaussianNumberPlane {
     }
 
     public void zoomIntoTheMandelbrotSet(Point zoomPoint) {
+        System.out.println("zoomIntoTheMandelbrotSet: "+ zoomPoint +" - old:  "+zoomCenter);
         if(this.zoomLevel == 1){
+            complexCenterForZoomedMandelbrot.push(this.complexCenterForMandelbrot);
+            ComplexNumber complexCenter = new ComplexNumber(this.complexCenterForMandelbrot);
             zoomCenter = getComplexNumberFromLatticeCoordsForMandelbrot(zoomPoint);
         } else {
             zoomCenter = getComplexNumberFromLatticeCoordsForZoomedMandelbrot(zoomPoint);
         }
         complexCenterForZoomedMandelbrot.push(zoomCenter);
         this.zoomLevel++;
-        System.out.println("zoomIntoTheMandelbrotSet: "+zoomPoint+" - old:  "+zoomCenter);
+        System.out.println("zoomIntoTheMandelbrotSet: "+ zoomPoint +" - old:  "+zoomCenter);
         System.out.println("zoomCenterNew: "+zoomCenter+" - zoomLevel:  "+ this.zoomLevel);
         for(int y = 0; y < worldDimensions.getY(); y++){
             for(int x = 0; x < worldDimensions.getX(); x++){
