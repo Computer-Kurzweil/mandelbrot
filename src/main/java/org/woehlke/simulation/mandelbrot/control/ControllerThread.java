@@ -1,8 +1,7 @@
 package org.woehlke.simulation.mandelbrot.control;
 
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
-import org.woehlke.simulation.mandelbrot.view.CanvasComplexNumberPlane;
-import org.woehlke.simulation.mandelbrot.view.FrameApplication;
+import org.woehlke.simulation.mandelbrot.view.ApplicationCanvas;
 
 /**
  * Mandelbrot Set drawn by a Turing Machine.
@@ -17,15 +16,16 @@ import org.woehlke.simulation.mandelbrot.view.FrameApplication;
 public class ControllerThread extends Thread implements Runnable {
 
     private volatile ApplicationModel applicationModel;
-    private volatile CanvasComplexNumberPlane canvas;
+    private volatile ApplicationCanvas canvas;
 
-    private final int THREAD_SLEEP_TIME = 10;
-    private Boolean goOn;
+    private final int THREAD_SLEEP_TIME = 1;
 
-    public ControllerThread(FrameApplication frame) {
+    private volatile Boolean goOn;
+
+    public ControllerThread(ApplicationModel model, ApplicationCanvas canvas) {
+        this.canvas = canvas;
+        this.applicationModel =  model;
         goOn = Boolean.TRUE;
-        this.canvas = frame.getCanvas();
-        this.applicationModel =  frame.getApplicationModel();
     }
 
     public void run() {
@@ -51,7 +51,4 @@ public class ControllerThread extends Thread implements Runnable {
         }
     }
 
-    public void pushButtonSetMode() {
-
-    }
 }

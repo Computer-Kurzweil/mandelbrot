@@ -1,7 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
-import org.woehlke.simulation.mandelbrot.model.constant.Direction;
 
 public class TuringPositions {
 
@@ -9,7 +8,7 @@ public class TuringPositions {
     private volatile Point worldDimensions;
     private volatile Point firstSetPosition;
 
-    private volatile Direction direction;
+    private volatile TuringDirection turingDirection;
 
     private volatile int steps;
 
@@ -21,7 +20,7 @@ public class TuringPositions {
     public void start() {
         this.steps = 0;
         this.turingPosition = new Point((worldDimensions.getX()-2),(worldDimensions.getY()/2+11));
-        this.direction = Direction.LEFT;
+        this.turingDirection = TuringDirection.LEFT;
     }
 
     public synchronized void markFirstSetPosition(){
@@ -36,7 +35,7 @@ public class TuringPositions {
     public synchronized void goForward() {
         ////System.out.println(position.toString()+","+steps);
         this.steps++;
-        switch (this.direction){
+        switch (this.turingDirection){
             case UP:
                 this.turingPosition.moveUp(); //.setY(turingPosition.getY()-1);
                 break;
@@ -55,27 +54,27 @@ public class TuringPositions {
     }
 
     public synchronized void turnRight() {
-        Direction newDirection;
-        switch (this.direction){
-            case UP: newDirection = Direction.RIGHT; break;
-            case RIGHT: newDirection = Direction.DOWN; break;
-            case DOWN: newDirection = Direction.LEFT; break;
-            case LEFT: newDirection = Direction.UP; break;
-            default: newDirection = this.direction; break;
+        TuringDirection newTuringDirection;
+        switch (this.turingDirection){
+            case UP: newTuringDirection = TuringDirection.RIGHT; break;
+            case RIGHT: newTuringDirection = TuringDirection.DOWN; break;
+            case DOWN: newTuringDirection = TuringDirection.LEFT; break;
+            case LEFT: newTuringDirection = TuringDirection.UP; break;
+            default: newTuringDirection = this.turingDirection; break;
         }
-        this.direction = newDirection;
+        this.turingDirection = newTuringDirection;
     }
 
     public synchronized void turnLeft() {
-        Direction newDirection;
-        switch (this.direction){
-            case UP: newDirection = Direction.LEFT; break;
-            case RIGHT: newDirection = Direction.UP; break;
-            case DOWN: newDirection = Direction.RIGHT; break;
-            case LEFT: newDirection = Direction.DOWN; break;
-            default: newDirection = this.direction; break;
+        TuringDirection newTuringDirection;
+        switch (this.turingDirection){
+            case UP: newTuringDirection = TuringDirection.LEFT; break;
+            case RIGHT: newTuringDirection = TuringDirection.UP; break;
+            case DOWN: newTuringDirection = TuringDirection.RIGHT; break;
+            case LEFT: newTuringDirection = TuringDirection.DOWN; break;
+            default: newTuringDirection = this.turingDirection; break;
         }
-        this.direction = newDirection;
+        this.turingDirection = newTuringDirection;
     }
 
     public synchronized boolean isFinishedWalkAround() {

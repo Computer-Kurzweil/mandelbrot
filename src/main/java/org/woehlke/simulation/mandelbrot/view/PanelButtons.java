@@ -1,7 +1,5 @@
 package org.woehlke.simulation.mandelbrot.view;
 
-import org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,9 +18,9 @@ public class PanelButtons extends JPanel implements ActionListener {
     private volatile JRadioButton radioButtonsSwitch;
     private volatile JRadioButton radioButtonsZoom;
     private volatile ButtonGroup radioButtonsGroup;
-    private volatile FrameApplication frame;
+    private volatile ApplicationFrame frame;
 
-    public PanelButtons(FrameApplication frame) {
+    public PanelButtons(ApplicationFrame frame) {
         this.frame = frame;
         JLabel buttonsLabel = new JLabel(frame.getConfig().getButtonsLabel());
         this.radioButtonsSwitch = new JRadioButton(frame.getConfig().getButtonsSwitch());

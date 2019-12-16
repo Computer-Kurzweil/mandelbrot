@@ -4,7 +4,7 @@ import org.woehlke.simulation.mandelbrot.config.Config;
 import org.woehlke.simulation.mandelbrot.control.ControllerThread;
 import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
-import org.woehlke.simulation.mandelbrot.model.constant.ApplicationStatus;
+import org.woehlke.simulation.mandelbrot.model.state.ApplicationState;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
@@ -20,26 +20,27 @@ import java.io.Serializable;
  * Date: 04.02.2006
  * Time: 18:47:46
  */
-public class FrameApplication extends JFrame implements ImageObserver,
+public class ApplicationFrame extends JFrame implements ImageObserver,
         MenuContainer,
         Serializable,
         Accessible,
-        WindowListener, MouseListener {
+        WindowListener,
+        MouseListener {
 
     private volatile ControllerThread controllerThread;
-    private volatile CanvasComplexNumberPlane canvas;
+    private volatile ApplicationCanvas canvas;
     private volatile ApplicationModel applicationModel;
     private volatile Config config;
     private volatile Rectangle rectangleBounds;
     private volatile Dimension dimensionSize;
 
-    public FrameApplication(Config config) {
+    public ApplicationFrame(Config config) {
         super(config.getTitle());
         this.config = config;
         this.applicationModel = new ApplicationModel(config);
         BoxLayout layout = new BoxLayout(rootPane, BoxLayout.PAGE_AXIS);
-        this.canvas = new CanvasComplexNumberPlane(applicationModel);
-        this.controllerThread = new ControllerThread(this);
+        this.canvas = new ApplicationCanvas(applicationModel);
+        this.controllerThread = new ControllerThread(applicationModel, this.canvas);
         PanelButtons panelButtons = new PanelButtons(this);
         PanelSubtitle panelSubtitle = new PanelSubtitle(config.getSubtitle());
         PanelCopyright panelCopyright = new PanelCopyright(config.getCopyright());
@@ -106,10 +107,6 @@ public class FrameApplication extends JFrame implements ImageObserver,
         return config;
     }
 
-    public void setMode(ApplicationStatus mode) {
-        applicationModel.setApplicationStatus(mode);
-    }
-
     public void showMeInit() {
         pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -146,20 +143,12 @@ public class FrameApplication extends JFrame implements ImageObserver,
         return controllerThread;
     }
 
-    public CanvasComplexNumberPlane getCanvas() {
+    public ApplicationCanvas getCanvas() {
         return canvas;
     }
 
     public ApplicationModel getApplicationModel() {
         return applicationModel;
-    }
-
-    public Rectangle getRectangleBounds() {
-        return rectangleBounds;
-    }
-
-    public Dimension getDimensionSize() {
-        return dimensionSize;
     }
 
     public void setModeSwitch() {

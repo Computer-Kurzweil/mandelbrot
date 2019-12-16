@@ -1,35 +1,17 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
-import org.woehlke.simulation.mandelbrot.model.constant.Phase;
-
-public class TuringPhase {
-
-    private volatile Phase turingPhase;
-
-    public TuringPhase() {
-        start();
-    }
-
-    public void start(){
-        this.turingPhase = Phase.SEARCH_THE_SET;
-    }
-
-    public void finishGoToSet(){
-        //System.out.println("===");
-        turingPhase=Phase.WALK_AROUND_THE_SET;
-    }
-
-    public void finishWalkAround() {
-        turingPhase=Phase.COLOR_THE_OUTSIDE;
-        //System.out.println("###");
-    }
-
-    public void finishFillTheOutsideWithColors() {
-        turingPhase=Phase.ALL_DONE;
-        //System.out.println("---");
-    }
-
-    public Phase getTuringPhase() {
-        return turingPhase;
-    }
+/**
+ * Mandelbrot Set drawn by a Turing Machine.
+ *
+ * (C) 2006 - 2015 Thomas Woehlke.
+ * https://thomas-woehlke.blogspot.com/2016/01/mandelbrot-set-drawn-by-turing-machine.html
+ * @author Thomas Woehlke
+ *
+ * Created by tw on 18.08.15.
+ */
+public enum TuringPhase {
+    SEARCH_THE_SET,
+    WALK_AROUND_THE_SET,
+    COLOR_THE_OUTSIDE,
+    ALL_DONE
 }

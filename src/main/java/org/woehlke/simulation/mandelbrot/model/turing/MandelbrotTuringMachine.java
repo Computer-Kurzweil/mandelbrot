@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model.turing;
 
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.fractal.GaussianNumberPlane;
 
 /**
@@ -16,18 +17,18 @@ public class MandelbrotTuringMachine {
 
     private volatile GaussianNumberPlane gaussianNumberPlane;
     private volatile TuringPositions turingPositions;
-    private volatile TuringPhase turingPhase;
+    private volatile TuringPhaseState turingPhaseState;
 
-    public MandelbrotTuringMachine(GaussianNumberPlane gaussianNumberPlane) {
-        this.gaussianNumberPlane = gaussianNumberPlane;
-        this.turingPhase = new TuringPhase();
-        this.turingPositions = new TuringPositions(gaussianNumberPlane.getWorldDimensions());
-        computeTheMandelbrotSet();
+    public MandelbrotTuringMachine(ApplicationModel model) {
+        this.gaussianNumberPlane = model.getGaussianNumberPlane();
+        this.turingPhaseState = new TuringPhaseState();
+        this.turingPositions = new TuringPositions(model.getWorldDimensions());
+        start();
     }
 
-    public void computeTheMandelbrotSet() {
+    public void start() {
         //System.out.println("*******");
-        this.turingPhase.start();
+        this.turingPhaseState.start();
         this.gaussianNumberPlane.start();
         this.turingPositions.start();
         //System.out.println("*******");
@@ -35,25 +36,19 @@ public class MandelbrotTuringMachine {
 
     public synchronized boolean step() {
         boolean repaint=true;
-        switch(turingPhase.getTuringPhase()){
+        switch(turingPhaseState.getTuringTuringPhase()){
             case SEARCH_THE_SET:
                 stepGoToSet();
                 repaint=false;
                 break;
             case WALK_AROUND_THE_SET:
                 stepWalkAround();
-                repaint=true;
                 break;
             case COLOR_THE_OUTSIDE:
                 fillTheOutsideWithColors();
-                repaint=true;
                 break;
             case ALL_DONE:
-                //System.out.print("||||");
-                repaint=true;
-                break;
             default:
-                //System.out.print("////");
                 repaint=false;
                 break;
         }
@@ -64,7 +59,7 @@ public class MandelbrotTuringMachine {
         //System.out.print(".");
         if(this.gaussianNumberPlane.isInMandelbrotSet(this.turingPositions.getTuringPosition())){
             this.turingPositions.markFirstSetPosition();
-            this.turingPhase.finishGoToSet();
+            this.turingPhaseState.finishGoToSet();
         } else {
             this.turingPositions.goForward();
         }
@@ -80,7 +75,7 @@ public class MandelbrotTuringMachine {
         }
         this.turingPositions.goForward();
         if(this.turingPositions.isFinishedWalkAround()){
-            this.turingPhase.finishWalkAround();
+            this.turingPhaseState.finishWalkAround();
         }
         //System.out.print(":");
     }
@@ -88,7 +83,7 @@ public class MandelbrotTuringMachine {
     private void fillTheOutsideWithColors(){
         //System.out.println("@");
         this.gaussianNumberPlane.fillTheOutsideWithColors();
-        this.turingPhase.finishFillTheOutsideWithColors();
+        this.turingPhaseState.finishFillTheOutsideWithColors();
         //System.out.println("@");
     }
 }

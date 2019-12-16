@@ -1,5 +1,6 @@
 package org.woehlke.simulation.mandelbrot.model.fractal;
 
+import org.woehlke.simulation.mandelbrot.model.ApplicationModel;
 import org.woehlke.simulation.mandelbrot.model.helper.Point;
 
 public class GaussianNumberPlane {
@@ -22,8 +23,8 @@ public class GaussianNumberPlane {
     private volatile ComplexNumber complexCenterForMandelbrot;
     private volatile ComplexNumber complexCenterForJulia;
 
-    public GaussianNumberPlane(Point worldDimensions) {
-        this.worldDimensions = worldDimensions;
+    public GaussianNumberPlane(ApplicationModel model) {
+        this.worldDimensions = model.getWorldDimensions();
         this.lattice = new int[worldDimensions.getWidth()][worldDimensions.getHeight()];
         this.complexWorldDimensions = new ComplexNumber(
             complexWorldDimensionRealX,
