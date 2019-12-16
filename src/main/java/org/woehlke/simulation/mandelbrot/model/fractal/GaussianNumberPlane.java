@@ -181,8 +181,10 @@ public class GaussianNumberPlane {
 
     public void zoomOutOfTheMandelbrotSet() {
         log.info("zoomOutOfTheMandelbrotSet: " + this.getZoomCenter());
-        this.deceaseZoomLevel();
-        this.setZoomCenter(complexCenterForZoomedMandelbrot.pop());
+        if(this.getZoomLevel()>2){
+            this.deceaseZoomLevel();
+            this.setZoomCenter(complexCenterForZoomedMandelbrot.pop());
+        }
         log.info("zoomCenter: " + this.getZoomCenter() + " - zoomLevel:  "+ this.getZoomLevel());
         for(int y = 0; y < worldDimensions.getY(); y++){
             for(int x = 0; x < worldDimensions.getX(); x++){
