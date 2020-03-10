@@ -56,7 +56,7 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 ```
 git clone https://github.com/thomaswoehlke/mandelbrot.git
 cd mandelbrot
-./gradlew run
+./gradlew clean shadowJar runShadow
 ```
 
 ### Run the Applet Test
