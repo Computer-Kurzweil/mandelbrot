@@ -11,5 +11,9 @@
         <module name="mandelbrot.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mandelbrot.main" target="11" />
+      <module name="mandelbrot.test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
