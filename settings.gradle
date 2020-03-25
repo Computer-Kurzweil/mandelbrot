@@ -9,7 +9,7 @@ buildCache {
         enabled = false
     }
     remote(HttpBuildCache) {
-        url = "${artifactory_url}/gradle-release/"
+        url = "${artifactory_contextUrl}/gradle-release/"
         credentials {
             username = "${artifactory_user}"
             password = "${artifactory_password}"
