@@ -2,10 +2,12 @@
   <library name="Gradle: org.apache.logging.log4j:log4j-api:2.13.0">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.13.0/adaee84c60e0705cf39df8b9fedfab100d3faf2/log4j-api-2.13.0.jar!/" />
+      <root url="jar://$USER_HOME$/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.13.0/adaee84c60e0705cf39df8b9fedfab100d3faf2/log4j-api-2.13.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.13.0/b0c01c8e58bd572bed5fcc09c3b11c425fd56831/log4j-api-2.13.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.13.0/b0c01c8e58bd572bed5fcc09c3b11c425fd56831/log4j-api-2.13.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
