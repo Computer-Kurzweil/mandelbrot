@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static org.woehlke.computer.kurzweil.mandelbrot.view.RradioButtons.RADIO_BUTTONS_SWITCH;
-import static org.woehlke.computer.kurzweil.mandelbrot.view.RradioButtons.RADIO_BUTTONS_ZOOM;
+import static org.woehlke.computer.kurzweil.mandelbrot.view.RadioButtons.RADIO_BUTTONS_SWITCH;
+import static org.woehlke.computer.kurzweil.mandelbrot.view.RadioButtons.RADIO_BUTTONS_ZOOM;
 
 
 /**

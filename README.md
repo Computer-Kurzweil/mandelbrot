@@ -1,6 +1,7 @@
 # Mandelbrot
 
 ![Java CI with Maven](https://github.com/Computer-Kurzweil/mandelbrot/workflows/Java%20CI%20with%20Maven/badge.svg)
+[![Build Status](https://travis-ci.com/Computer-Kurzweil/mandelbrot.svg?branch=master)](https://travis-ci.com/Computer-Kurzweil/mandelbrot)
 
 **Computing the Edge of the Mandelbrot Set with a Turing Machine**
 

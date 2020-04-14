@@ -9,9 +9,9 @@
     <version>2.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Simulated Evolution</name>
-    <description>Artificial Life Simulation of Bacteria Motion depending on DNA</description>
-    <url>https://github.com/Computer-Kurzweil/mandelbrot</url>
+    <name>Mandelbrot</name>
+    <description>Computing the Edge of the Mandelbrot Set with a Turing Machine</description>
+    <url>https://woehlke.org/p/mandelbrot</url>
     <inceptionYear>2013</inceptionYear>
 
     <scm>
