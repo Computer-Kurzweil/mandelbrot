@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mandelbrot.iml" filepath="$PROJECT_DIR$/.idea/modules/mandelbrot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mandelbrot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/mandelbrot.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mandelbrot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/mandelbrot.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mandelbrot.iml" filepath="$PROJECT_DIR$/mandelbrot.iml" />
     </modules>
   </component>
 </project>
