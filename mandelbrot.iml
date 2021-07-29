@@ -329,12 +329,6 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.1.2" level="project" />
     <orderEntry type="library" name="Maven: rome:rome:1.0" level="project" />
     <orderEntry type="library" name="Maven: jdom:jdom:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-enforcer-plugin:maven-plugin:3.0.0-M3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.enforcer:enforcer-api:3.0.0-M3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.enforcer:enforcer-rules:3.0.0-M3" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.resolver:maven-resolver-util:1.4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven.resolver:maven-resolver-api:1.4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.maven:maven-compat:3.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.plugins:maven-invoker-plugin:maven-plugin:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-invoker:3.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.maven.shared:maven-script-interpreter:1.2" level="project" />
