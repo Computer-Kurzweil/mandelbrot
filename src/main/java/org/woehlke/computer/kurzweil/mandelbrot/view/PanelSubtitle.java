@@ -14,6 +14,8 @@ import java.awt.*;
  */
 public class PanelSubtitle extends JPanel {
 
+  private final static long serialVersionUID = 242L;
+
   public PanelSubtitle(String subtitle) {
       this.setLayout(new FlowLayout());
       this.add(new JLabel(subtitle));

@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.6">
-      <module name="mandelbrot" target="13" />
+      <module name="mandelbrot" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -14,9 +14,11 @@ import java.awt.*;
  */
 public class PanelCopyright extends JPanel {
 
-  public PanelCopyright(String subtitle) {
-    this.setLayout(new FlowLayout());
-    this.add(new JLabel(subtitle));
-  }
+    private final static long serialVersionUID = 242L;
+
+    public PanelCopyright(String subtitle) {
+        this.setLayout(new FlowLayout());
+        this.add(new JLabel(subtitle));
+    }
 
 }
