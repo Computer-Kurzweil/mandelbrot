@@ -42,6 +42,11 @@
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="adobe-public" />
+      <option name="name" value="AdobePublic Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss-releases" />
       <option name="name" value="JBoss Releases Repository" />
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
@@ -52,9 +57,24 @@
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="springio-plugins-release" />
+      <option name="name" value="Spring Plugins Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="sonatype-releases" />
+      <option name="name" value="Sonatype Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="MavenRepo" />
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="snapshots" />
+      <option name="name" value="libs-snapshot" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="hortonworks-releases" />
@@ -62,9 +82,19 @@
       <option name="url" value="https://repo.hortonworks.com/content/repositories/releases/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="springio-libs-release" />
+      <option name="name" value="Spring Lib Release Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="maven" />
       <option name="name" value="maven" />
       <option name="url" value="https://plugins.gradle.org/m2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-libs-milestone" />
+      <option name="name" value="Spring Lib M Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jboss.community" />
@@ -72,9 +102,19 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="jcenter" />
+      <option name="name" value="JCenter Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="adobe-public" />
       <option name="name" value="AdobePublic Repository" />
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss-ea" />
+      <option name="name" value="JBossEA Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="BintrayJCenter" />
@@ -95,6 +135,11 @@
       <option name="id" value="springio-libs-release" />
       <option name="name" value="Spring Lib Release Repository" />
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="atlassian-public" />
+      <option name="name" value="Atlassian Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="jcenter" />
@@ -142,6 +187,11 @@
       <option name="url" value="https://repo.spring.io/libs-release/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="hortonworks-releases" />
+      <option name="name" value="Hortonworks Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="jboss-releases" />
       <option name="name" value="JBoss Releases Repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/releases/" />
@@ -149,7 +199,22 @@
     <remote-repository>
       <option name="id" value="wso2-public" />
       <option name="name" value="WSO2 Public Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="libs-release" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="wso2-public" />
+      <option name="name" value="WSO2 Public Repository" />
       <option name="url" value="http://tw-thinkpad:8081/artifactory/mvn" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss-releases" />
+      <option name="name" value="JBoss Releases Repository" />
+      <option name="url" value="http://localhost:8081/artifactory/libs-release" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="adobe-public" />
