@@ -55,10 +55,6 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 ### Git Repository
 * [https://github.com/thomaswoehlke/mandelbrot](https://github.com/thomaswoehlke/mandelbrot.git)
 
-
-### Gradle Wrapper
-* [https://docs.gradle.org/current/userguide/gradle_wrapper.html](https://docs.gradle.org/current/userguide/gradle_wrapper.html)
-
 ### Run the Application
 ```
 git clone https://github.com/Computer-Kurzweil/mandelbrot.git
