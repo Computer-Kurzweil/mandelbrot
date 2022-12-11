@@ -61,7 +61,7 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 
 ### Run the Application
 ```
-git clone https://github.com/thomaswoehlke/mandelbrot.git
+git clone https://github.com/Computer-Kurzweil/mandelbrot.git
 cd mandelbrot
 ./mvnw
 ```
