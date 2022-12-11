@@ -27,7 +27,7 @@
     <distributionManagement>
         <site>
             <id>simulatedevolution.local</id>
-            <url>file://${user.home}/public_html/p/mandelbrot</url>
+            <url>file://${user.home}/public_html/java/mandelbrot</url>
         </site>
         <snapshotRepository>
             <id>snapshots</id>
