@@ -52,8 +52,9 @@ The most beautiful Julia Sets are drawn by clicking into the Border of the Mande
 ![Clicked on another Point on the Edge of Mandelbrot Set: The Julia Set](src/main/resources/img/julia02.png)
 
 
-### Git Repository
-* [https://github.com/thomaswoehlke/mandelbrot](https://github.com/thomaswoehlke/mandelbrot.git)
+### Repositories
+* [Github Repository](https://github.com/Computer-Kurzweil/mandelbrot)
+* [Maven Project Reports](https://java.woehlke.org/mandelbrot/readme2.html)
 
 ### Run the Application
 ```

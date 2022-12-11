@@ -9,7 +9,7 @@
 
     <name>Mandelbrot</name>
     <description>Computing the Edge of the Mandelbrot Set with a Turing Machine</description>
-    <url>https://woehlke.org/p/mandelbrot</url>
+    <url>https://java.woehlke.org/mandelbrot</url>
     <inceptionYear>2013</inceptionYear>
 
     <scm>
